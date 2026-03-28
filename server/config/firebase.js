@@ -8,25 +8,28 @@ let auth = null;
 
 function initializeFirebase() {
     if (admin.apps.length === 0) {
-        const serviceAccount = {
-            projectId: process.env.FIREBASE_PROJECT_ID,
-            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')
-        };
+        const projectId = process.env.FIREBASE_PROJECT_ID;
+        const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+        const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            databaseURL: process.env.FIREBASE_DATABASE_URL
-        });
+        if (projectId && clientEmail && privateKey) {
+            admin.initializeApp({
+                credential: admin.credential.cert({
+                    projectId,
+                    clientEmail,
+                    privateKey: privateKey.replace(/\\n/g, '\n')
+                }),
+                databaseURL: process.env.FIREBASE_DATABASE_URL
+            });
+            db = admin.firestore();
+            auth = admin.auth();
+            db.settings({ ignoreUndefinedProperties: true });
+            console.log('[Firebase] Connected to project:', projectId);
+        } else {
+            console.warn('[Firebase] Missing credentials - running without Firebase.');
+            console.warn('[Firebase] Set FIREBASE_CLIENT_EMAIL and FIREBASE_PRIVATE_KEY to enable.');
+        }
     }
-
-    db = admin.firestore();
-    auth = admin.auth();
-
-    // Firestore settings
-    db.settings({ ignoreUndefinedProperties: true });
-
-    console.log('[Firebase] Connected to project:', process.env.FIREBASE_PROJECT_ID);
     return { db, auth, admin };
 }
 
