@@ -1,0 +1,66 @@
+/* ============================================
+   ZEUS CRM PRO - Theme System
+   ============================================ */
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+    --bg: #0A0A0A;
+    --bg-card: #111111;
+    --bg-input: #1a1a1a;
+    --bg-hover: #1e1e1e;
+    --bg-sidebar: #0d0d0d;
+    --text: #ffffff;
+    --text-secondary: #aaaaaa;
+    --text-muted: #666666;
+    --border: #222222;
+    --border-light: #333333;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg: #f5f5f5;
+    --bg-card: #ffffff;
+    --bg-input: #f0f0f0;
+    --bg-hover: #e8e8e8;
+    --bg-sidebar: #fafafa;
+    --text: #1a1a1a;
+    --text-secondary: #555555;
+    --text-muted: #999999;
+    --border: #e0e0e0;
+    --border-light: #cccccc;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Midnight Blue Theme */
+[data-theme="midnight"] {
+    --bg: #0a0e1a;
+    --bg-card: #101829;
+    --bg-input: #162038;
+    --bg-hover: #1c2844;
+    --bg-sidebar: #080c16;
+    --text: #e0e8f5;
+    --text-secondary: #8899bb;
+    --text-muted: #4a5a7a;
+    --border: #1e2d4a;
+    --border-light: #2a3d5a;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    border-color: var(--gold);
+}

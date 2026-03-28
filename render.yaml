@@ -1,0 +1,30 @@
+# ============================================
+# ZEUS CRM PRO - Render.com Deployment Config
+# ============================================
+# Deploy: https://render.com/deploy
+services:
+  - type: web
+    name: zeus-crm-pro
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://zeusgetquote.com
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
