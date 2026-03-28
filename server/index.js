@@ -1,6 +1,6 @@
 // ============================================
 // ZEUS CRM PRO - Main Server
-// Zeus Technologia - @zeustecnologiaonlife
+// Zeus Tecnologia - @zeustecnologiaonlife
 // ============================================
 const express = require('express');
 const path = require('path');
@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
 const http = require('http');
-const { Server } = require('socket.io';
+const { Server } = require('socket.io');
 
 const config = require('./config/env');
 const { initializeFirebase } = require('./config/firebase');
@@ -150,22 +150,22 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// ============================================
+// ===========================================
 // ERROR HANDLING
-// ============================================
+// ===========================================
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// ============================================
+// ===========================================
 // START SERVER
-// ============================================
+// ===========================================
 const PORT = config.port;
 server.listen(PORT, () => {
     logger.info('========================================');
-    logger.info(`  ZEUS CRM PRO v2.0.0`);
-    logger.info(`  Environment: ${config.env}`);
-    logger.info(`  Port: ${PORT}`);
-    logger.info(`  Firebase: ${config.firebase.projectId}`);
+    logger.info('  ZEUS CRM PRO v2.0.0');
+    logger.info('  Environment: ' + config.env);
+    logger.info('  Port: ' + PORT);
+    logger.info('  Firebase: ' + config.firebase.projectId);
     logger.info('========================================');
 });
 
