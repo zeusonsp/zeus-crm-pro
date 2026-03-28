@@ -46,7 +46,6 @@ router.get('/dashboard', async (req, res) => {
         // Tasks
         const pendingTasks = tasks.items.filter(t => t.status === 'pendente').length;
         const overdueTasks = tasks.items.filter(t =>
-%=
             t.status === 'pendente' && t.dueDate && t.dueDate < new Date().toISOString()
         ).length;
 
@@ -105,7 +104,7 @@ router.get('/dashboard', async (req, res) => {
                 monthlyTrend: months,
                 sellerPerformance: sellerStats,
                 conversionRate: leads.pagination.total > 0 ?
-                    ((leadsByStage['fechamento') || 0) / leads.pagination.total * 100).toFixed(1) : 0
+                    ((leadsByStage['fechamento'] || 0) / leads.pagination.total * 100).toFixed(1) : 0
             }
         });
     } catch (err) {

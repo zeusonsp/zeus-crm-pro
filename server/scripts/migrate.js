@@ -6,7 +6,7 @@
 // ============================================
 // Usage: node server/scripts/migrate.js
 //
-// This script reads the old Firebase document format
+// This script reads the old Firestore document format
 // (single document with arrays) and creates individual
 // documents in the new collections.
 // ============================================
@@ -15,7 +15,7 @@ require('dotenv').config();
 const { initializeFirebase, getDB } = require('../config/firebase');
 
 async function migrate() {
-    console.log('=========================================');
+    console.log('========================================');
     console.log('  ZEUS CRM PRO - Migration Tool');
     console.log('========================================');
 
@@ -83,7 +83,7 @@ async function migrateData(db, data) {
         const batch = db.batch();
         for (const orc of data.orcamentos) {
             const id = orc.id || generateId();
-            const doc= {
+            const doc = {
                 id,
                 numero: orc.numero || `ORC-MIG-${id.substring(0, 6)}`,
                 cliente: orc.cliente || orc.client || '',
@@ -113,12 +113,12 @@ async function migrateData(db, data) {
         const batch = db.batch();
         for (const c of contracts) {
             const id = c.id || generateId();
-            const doc= {
+            const doc = {
                 id,
                 clientName: c.clientName || c.cliente || '',
                 value: parseFloat(c.value || c.valor || 0),
                 description: c.description || '',
-                status: c.status || 'rÃ¡scuno',
+                status: c.status || 'rascunho',
                 startDate: c.startDate || '',
                 endDate: c.endDate || '',
                 createdAt: c.createdAt || new Date().toISOString(),
@@ -130,4 +130,80 @@ async function migrateData(db, data) {
         await batch.commit();
         console.log(`[Contracts] Migrated ${contracts.length} contracts`);
     }
-¶»§q«^
+
+    // Migrate Products
+    const products = data.products || data.produtos || [];
+    if (products.length > 0) {
+        console.log(`\n[Products] Found ${products.length} products to migrate...`);
+        const batch = db.batch();
+        for (const p of products) {
+            const id = p.id || generateId();
+            const doc = {
+                id,
+                nome: p.nome || p.name || '',
+                descricao: p.descricao || p.description || '',
+                preco: parseFloat(p.preco || p.price || 0),
+                categoria: p.categoria || 'geral',
+                sku: p.sku || '',
+                estoque: p.estoque || 0,
+                ativo: true,
+                createdAt: p.createdAt || new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            batch.set(db.collection('zeus_products').doc(id), doc);
+            totalMigrated++;
+        }
+        await batch.commit();
+        console.log(`[Products] Migrated ${products.length} products`);
+    }
+
+    // Migrate Tasks
+    const tasks = data.zeusTasks || data.tasks || [];
+    if (tasks.length > 0) {
+        console.log(`\n[Tasks] Found ${tasks.length} tasks to migrate...`);
+        const batch = db.batch();
+        for (const t of tasks) {
+            const id = t.id || generateId();
+            const doc = {
+                id,
+                title: t.title || t.titulo || '',
+                description: t.description || t.descricao || '',
+                assignedTo: t.assignedTo || t.responsavel || '',
+                priority: t.priority || 'media',
+                status: t.status || t.done ? 'concluida' : 'pendente',
+                dueDate: t.dueDate || '',
+                createdAt: t.createdAt || new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            batch.set(db.collection('zeus_tasks').doc(id), doc);
+            totalMigrated++;
+        }
+        await batch.commit();
+        console.log(`[Tasks] Migrated ${tasks.length} tasks`);
+    }
+
+    console.log('\n========================================');
+    console.log(`  Migration Complete! ${totalMigrated} records migrated`);
+    console.log('========================================');
+}
+
+function mapStage(stage) {
+    const mapping = {
+        'new': 'novo', 'novo': 'novo',
+        'contact': 'contato', 'contato': 'contato',
+        'proposal': 'proposta', 'proposta': 'proposta',
+        'negotiation': 'negociacao', 'negociacao': 'negociacao',
+        'closed': 'fechamento', 'fechamento': 'fechamento', 'won': 'fechamento'
+    };
+    return mapping[stage.toLowerCase()] || 'novo';
+}
+
+function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
+}
+
+// Run
+migrate().then(() => process.exit(0)).catch(err => {
+    console.error('[Migration] FATAL ERROR:', err);
+    process.exit(1);
+});

@@ -65,7 +65,7 @@ function getOrcamentoTemplate(orcamento) {
             </tr>
             ${(orcamento.items || []).map(item => `
                 <tr>
-                    <td style="padding:8px;border-bottom:1px solid #222">${item.descricao=}</td>
+                    <td style="padding:8px;border-bottom:1px solid #222">${item.descricao}</td>
                     <td style="padding:8px;text-align:center;border-bottom:1px solid #222">${item.quantidade}</td>
                     <td style="padding:8px;text-align:right;border-bottom:1px solid #222">R$ ${(item.subtotal || 0).toFixed(2)}</td>
                 </tr>
@@ -73,9 +73,9 @@ function getOrcamentoTemplate(orcamento) {
         </table>
         <div style="text-align:right;margin:20px 0;padding:15px;background:#1a1a1a;border-radius:8px">
             <p style="color:#888;margin:5px 0">Subtotal: R$ ${(orcamento.total || 0).toFixed(2)}</p>
-            ${orcamento.desconto ? `<p style="color:#888;margin:5px 0">Desconto: -R$ $xorcamento.desconto.toFixed(2)}</p>` : ''}
+            ${orcamento.desconto ? `<p style="color:#888;margin:5px 0">Desconto: -R$ ${orcamento.desconto.toFixed(2)}</p>` : ''}
             <p style="color:#D4AF37;font-size:20px;font-weight:bold;margin:10px 0">
-                Total: R$ ${(aorcamento.totalFinal || orcamento.total || 0).toFixed(2)}
+                Total: R$ ${(orcamento.totalFinal || orcamento.total || 0).toFixed(2)}
             </p>
         </div>
         <p style="color:#888;font-size:12px;text-align:center;margin-top:30px">
@@ -86,7 +86,7 @@ function getOrcamentoTemplate(orcamento) {
 
 function getWelcomeTemplate(name) {
     return `
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0A0A0C;color:#fff;padding:30px;border-radius:12px">
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#0A0A0A;color:#fff;padding:30px;border-radius:12px">
         <h1 style="color:#D4AF37;text-align:center">Bem-vindo a Zeus!</h1>
         <p>Ola ${name},</p>
         <p>Obrigado pelo seu interesse nos nossos paineis LED premium.</p>
