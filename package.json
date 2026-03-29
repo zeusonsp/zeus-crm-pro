@@ -1,6 +1,6 @@
 {
   "name": "zeus-crm-pro",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Zeus CRM Pro - Sistema completo de gestao comercial para Zeus Tecnologia",
   "main": "server/index.js",
   "scripts": {
@@ -28,7 +28,9 @@
     "uuid": "^9.0.0",
     "dayjs": "^1.11.10",
     "winston": "^3.11.0",
-    "socket.io": "^4.7.4"
+    "socket.io": "^4.7.4",
+    "pdfkit": "^0.15.0",
+    "exceljs": "^4.4.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",

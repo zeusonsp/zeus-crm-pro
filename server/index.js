@@ -1,5 +1,5 @@
 // ============================================
-// ZEUS CRM PRO - Main Server
+// ZEUS CRM PRO - Main Server v3.0.0
 // Zeus Tecnologia - @zeustecnologiaonlife
 // ============================================
 
@@ -85,16 +85,12 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
   lastModified: true,
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
-      // HTML files: always revalidate with server (uses ETag)
       res.setHeader('Cache-Control', 'no-cache');
     } else if (filePath.match(/\.(js|css)$/)) {
-      // JS/CSS: cache 1 hour, revalidate
       res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
     } else if (filePath.match(/\.(png|jpg|jpeg|gif|ico|svg|webp)$/)) {
-      // Images: cache 7 days
       res.setHeader('Cache-Control', 'public, max-age=604800');
     } else {
-      // Everything else: cache 1 day
       res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
@@ -112,9 +108,10 @@ apiRouter.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'Zeus CRM Pro',
-    version: '2.0.1',
+    version: '3.0.0',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    features: ['ai', 'campaigns', 'signatures', 'exports']
   });
 });
 
@@ -132,6 +129,10 @@ apiRouter.use('/reports', authMiddleware, require('./routes/reports'));
 apiRouter.use('/marketing', authMiddleware, require('./routes/marketing'));
 apiRouter.use('/users', authMiddleware, require('./routes/users'));
 apiRouter.use('/settings', authMiddleware, require('./routes/settings'));
+
+// NEW v3.0 - AI, Exports, Webhooks
+apiRouter.use('/ai', authMiddleware, require('./routes/ai'));
+apiRouter.use('/exports', authMiddleware, require('./routes/exports'));
 apiRouter.use('/webhooks', require('./routes/webhooks'));
 
 // Mount API
@@ -170,7 +171,6 @@ app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) {
     return notFoundHandler(req, res);
   }
-  // Set no-cache for SPA fallback too
   res.setHeader('Cache-Control', 'no-cache');
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
@@ -190,10 +190,13 @@ const PORT = config.port;
 
 server.listen(PORT, () => {
   logger.info('========================================');
-  logger.info(' ZEUS CRM PRO v2.0.1');
+  logger.info(' ZEUS CRM PRO v3.0.0');
   logger.info(' Environment: ' + config.env);
   logger.info(' Port: ' + PORT);
   logger.info(' Firebase: ' + config.firebase.projectId);
+  logger.info(' AI: ' + (config.openai.apiKey ? 'Enabled' : 'Disabled'));
+  logger.info(' ClickSign: ' + (config.clicksign && config.clicksign.apiKey ? 'Enabled' : 'Disabled'));
+  logger.info(' Twilio SMS: ' + (config.twilio.accountSid ? 'Enabled' : 'Disabled'));
   logger.info('========================================');
 });
 
