@@ -1,1 +1,2249 @@
-��`�!�ia�iejx
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus Tecnologia — High Performance LED Panels</title>
+    <meta name="description" content="Premium retractable LED panels, home cinema and high-performance audio systems. Access our complete catalog.">
+
+    <!-- Meta Pixel (Facebook/Instagram) — Replace YOUR_PIXEL_ID with your actual Pixel ID -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '24876339265302420');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=24876339265302420&ev=PageView&noscript=1"/></noscript>
+
+    <!-- Google Analytics — Replace YOUR_GA_ID with your actual GA4 ID (G-XXXXXXXXXX) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA_ID');
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zeus Tecnologia — High Performance LED Panels">
+    <meta property="og:description" content="Premium retractable LED panels, home cinema and high-performance audio systems. Access our complete catalog.">
+    <meta property="og:image" content="https://www.zeusoficial.com/og-zeus.jpg">
+    <meta property="og:url" content="https://www.zeusoficial.com/captacao">
+    <meta property="og:site_name" content="Zeus Tecnologia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zeus Tecnologia — High Performance LED Panels">
+    <meta name="twitter:description" content="Premium retractable LED panels and home cinema solutions.">
+    <meta name="twitter:image" content="https://www.zeusoficial.com/og-zeus.jpg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230A0A0A'/><text x='50' y='68' font-family='serif' font-size='55' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>Z</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --black:#0A0A0A;--dark:#111;--card:#141414;--gold:#D4AF37;--gold-light:#E8C84A;--gold-dark:#B8941F;
+            --text:#fff;--muted:#999;--dim:#666;--green-wa:#25D366;
+            --border:rgba(212,175,55,0.15);--border-s:rgba(255,255,255,0.06);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:'Montserrat',sans-serif;background:var(--black);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        .container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+        /* BG */
+        .bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;
+            background:radial-gradient(ellipse 600px 400px at 20% 20%,rgba(212,175,55,0.04),transparent),
+            radial-gradient(ellipse 500px 500px at 80% 80%,rgba(212,175,55,0.03),transparent)}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:16px 0;
+            background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-weight:900;font-size:20px;letter-spacing:8px;color:var(--text);text-decoration:none}
+        .nav-badge{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+
+        /* === STEP 0: COUNTRY SELECTOR === */
+        #step-country{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;padding:100px 20px 60px}
+        .country-box{text-align:center;max-width:700px;width:100%}
+        .country-box .logo-big{font-weight:900;font-size:clamp(36px,8vw,56px);letter-spacing:12px;margin-bottom:8px;animation:fadeUp .7s ease both}
+        .country-box .sub{font-size:13px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;animation:fadeUp .7s ease .1s both}
+        .country-question{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,32px);margin-bottom:12px;animation:fadeUp .7s ease .2s both}
+        .country-hint{font-size:14px;color:var(--muted);margin-bottom:40px;animation:fadeUp .7s ease .25s both}
+        .country-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;animation:fadeUp .7s ease .3s both}
+        .country-card{
+            background:var(--card);border:2px solid var(--border-s);border-radius:20px;padding:36px 24px;
+            cursor:pointer;transition:all .3s;text-align:center;position:relative;overflow:hidden}
+        .country-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+            background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));opacity:0;transition:opacity .3s}
+        .country-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 40px rgba(212,175,55,.1)}
+        .country-card:hover::before{opacity:1}
+        .country-flag{font-size:48px;margin-bottom:16px;display:block}
+        .country-card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+        .country-card p{font-size:12px;color:var(--muted);line-height:1.6}
+        .country-card .lang-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+            padding:4px 12px;border-radius:20px;margin-top:12px;background:rgba(212,175,55,.1);color:var(--gold)}
+
+        /* === STEP 1: LANDING + FORM === */
+        #step-landing{display:none;position:relative;z-index:1}
+
+        /* HERO */
+        .hero{padding:160px 0 80px;text-align:center}
+        .hero-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+            color:var(--gold);padding:8px 20px;border:1px solid var(--border);border-radius:30px;margin-bottom:32px;animation:fadeUp .8s ease}
+        .hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,56px);font-weight:600;line-height:1.15;margin-bottom:24px;animation:fadeUp .8s ease .1s both}
+        .hero h1 span{color:var(--gold)}
+        .hero p{font-size:clamp(14px,2vw,17px);color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.7;animation:fadeUp .8s ease .2s both}
+        .hero-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;animation:fadeUp .8s ease .3s both}
+        .hero-badge-item{font-size:11px;font-weight:500;color:var(--muted);padding:8px 16px;background:var(--card);border:1px solid var(--border-s);border-radius:20px}
+
+        /* ABOUT */
+        .about{padding:80px 0}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .about-label{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+        .about h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);font-weight:600;line-height:1.2;margin-bottom:20px}
+        .about-text{color:var(--muted);font-size:15px;line-height:1.8}
+        .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center;transition:all .3s}
+        .stat-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 30px rgba(212,175,55,.1)}
+        .stat-number{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:4px}
+        .stat-label{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+
+        /* PRODUCTS */
+        .products-preview{padding:60px 0 40px}
+        .products-preview .section-label{text-align:center;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+        .products-preview h2{text-align:center;font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);margin-bottom:48px}
+        .product-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .product-card{background:var(--card);border:1px solid var(--border-s);border-radius:16px;padding:32px 24px;text-align:center;transition:all .3s}
+        .product-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(212,175,55,.08)}
+        .product-icon{width:56px;height:56px;margin:0 auto 16px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+        .product-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+        .product-card p{font-size:13px;color:var(--muted);line-height:1.6}
+
+        /* FORM */
+        .form-section{padding:80px 0 100px}
+        .form-wrapper{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 40px;position:relative;overflow:hidden}
+        .form-wrapper::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark))}
+        .form-label-top{text-align:center;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+        .form-wrapper h2{text-align:center;font-family:'Playfair Display',serif;font-size:28px;font-weight:600;margin-bottom:8px}
+        .form-subtitle{text-align:center;font-size:14px;color:var(--muted);margin-bottom:36px}
+        .form-group{margin-bottom:20px}
+        .form-group label{display:block;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+        .form-group input,.form-group select{
+            width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;
+            padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:15px;color:var(--text);transition:all .3s;outline:none;
+            -webkit-appearance:none;appearance:none}
+        .form-group input::placeholder{color:var(--dim)}
+        .form-group input:focus,.form-group select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.1);background:rgba(255,255,255,0.06)}
+        /* FIX: Select dropdown styling for mobile + desktop */
+        .form-group select{
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat:no-repeat;background-position:right 16px center;background-size:16px;
+            padding-right:40px;cursor:pointer}
+        .form-group select option{background:#1a1a1a;color:#fff;padding:12px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .form-note{text-align:center;font-size:11px;color:var(--dim);margin-top:16px}
+        .form-note svg{vertical-align:middle;margin-right:4px}
+        .phone-wrapper{display:flex;align-items:stretch;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,0.03);overflow:hidden;transition:border-color .3s}
+        .phone-wrapper:focus-within{border-color:var(--gold)}
+        .phone-prefix{display:flex;align-items:center;padding:0 14px;font-size:15px;color:var(--muted);white-space:nowrap;border-right:1px solid var(--border);background:rgba(255,255,255,0.02);flex-shrink:0}
+        .country-code-box{display:none;align-items:center;padding:0 6px 0 10px;gap:4px;border-right:1px solid var(--border);background:rgba(255,255,255,0.02);flex-shrink:0}
+        .country-flag{font-size:20px;line-height:1}
+        .country-code-input{width:52px;background:transparent;border:none;color:#fff;font-size:15px;font-weight:600;padding:0;outline:none;text-align:center}
+        .country-code-input::placeholder{color:var(--dim);font-weight:400}
+        .phone-wrapper input[type="tel"]{flex:1;border:none!important;border-radius:0!important;background:transparent!important;padding:14px 16px!important;outline:none!important;box-shadow:none!important}
+        .phone-wrapper input[type="tel"]:focus{border:none!important;box-shadow:none!important;background:transparent!important}
+        .phone-wrapper .country-code-input{box-shadow:none!important}
+        .phone-wrapper .country-code-input:focus{box-shadow:none!important;border:none!important}
+        .phone-country-hint{display:none;align-items:center;gap:6px;margin-top:6px;padding:4px 10px;font-size:12px;color:var(--gold);opacity:.85;letter-spacing:.3px}
+        .phone-country-hint .ch-flag{font-size:15px}
+        .phone-country-hint .ch-name{font-weight:500}
+        .cep-status{font-size:12px;margin-top:6px;min-height:18px;transition:all .3s}
+        .cep-status.loading{color:var(--gold)}
+        .cep-status.success{color:#25D366}
+        .cep-status.error{color:#e74c3c}
+
+        /* SUBMIT */
+        .btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border:none;border-radius:12px;
+            font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;color:var(--black);cursor:pointer;transition:all .3s;text-transform:uppercase}
+        .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,175,55,.3)}
+        .btn-submit.loading{pointer-events:none;opacity:.7}
+        .spinner{display:inline-block;width:20px;height:20px;border:2px solid rgba(0,0,0,.2);border-top-color:var(--black);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px}
+
+        /* === STEP 2: DOCUMENTS === */
+        #step-docs{display:none;min-height:100vh;padding:100px 0 60px;position:relative;z-index:1}
+        .docs-header{text-align:center;margin-bottom:60px}
+        .docs-header .welcome-tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+            color:var(--gold);padding:8px 20px;border:1px solid var(--border);border-radius:30px;margin-bottom:20px}
+        .docs-header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,44px);font-weight:600;margin-bottom:16px}
+        .docs-header h1 span{color:var(--gold)}
+        .docs-header p{font-size:16px;color:var(--muted);max-width:550px;margin:0 auto}
+
+        /* Doc Cards */
+        .doc-cards{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto 60px}
+        .doc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;transition:all .4s;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+        .doc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:all .3s}
+        .doc-card.external::before{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark))}
+        .doc-card.internal::before{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark))}
+        .doc-card:hover{transform:translateY(-6px);box-shadow:0 16px 50px rgba(0,0,0,.3)}
+        .doc-card:hover.external{border-color:var(--gold);box-shadow:0 16px 50px rgba(212,175,55,.15)}
+        .doc-card:hover.internal{border-color:var(--gold);box-shadow:0 16px 50px rgba(212,175,55,.15)}
+        .doc-icon{width:72px;height:72px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
+        .doc-card.external .doc-icon{background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));color:var(--gold)}
+        .doc-card.internal .doc-icon{background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));color:var(--gold)}
+        .doc-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px}
+        .doc-card.external .doc-tag{background:rgba(212,175,55,.1);color:var(--gold)}
+        .doc-card.internal .doc-tag{background:rgba(212,175,55,.1);color:var(--gold)}
+        .doc-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+        .doc-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:28px}
+        .doc-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;text-decoration:none;transition:all .3s;letter-spacing:.5px;margin-top:auto}
+        .doc-card.external .doc-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black)}
+        .doc-card.internal .doc-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black)}
+        .doc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+        .doc-items{text-align:left;margin:16px 0 24px;list-style:none}
+        .doc-items li{font-size:13px;color:var(--muted);padding:6px 0;display:flex;align-items:center;gap:8px}
+        .doc-items li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+        .doc-card.external .doc-items li::before{background:var(--gold)}
+        .doc-card.internal .doc-items li::before{background:var(--gold)}
+
+        /* CTA */
+        .cta-section{max-width:700px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px 40px;text-align:center}
+        .cta-section h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px}
+        .cta-section p{font-size:14px;color:var(--muted);margin-bottom:28px}
+        .cta-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;text-decoration:none;transition:all .3s;border:none;cursor:pointer}
+        .cta-btn:hover{transform:translateY(-2px)}
+        .cta-btn.whatsapp{background:var(--green-wa);color:#fff}
+        .cta-btn.whatsapp:hover{box-shadow:0 8px 24px rgba(37,211,102,.3)}
+        .cta-btn.instagram{background:linear-gradient(135deg,#833AB4,#C13584,#E1306C,#FD1D1D,#F77737);color:#fff}
+        .cta-btn.instagram:hover{box-shadow:0 8px 24px rgba(193,53,132,.3)}
+        .cta-btn.site{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black)}
+        .cta-btn.site:hover{box-shadow:0 8px 24px rgba(212,175,55,.3)}
+
+        /* FOOTER */
+        .footer{position:relative;z-index:1;padding:40px 0;border-top:1px solid var(--border);text-align:center}
+        .footer p{font-size:12px;color:var(--dim)}
+        .footer a{color:var(--gold);text-decoration:none}
+
+        /* FLOATING WA */
+        .float-wa{position:fixed;bottom:24px;right:24px;z-index:200;width:56px;height:56px;background:var(--green-wa);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:all .3s;animation:pulseWa 2s infinite}
+        .float-wa:hover{transform:scale(1.1)}
+        .float-wa svg{width:28px;height:28px;fill:#fff}
+
+        /* TOAST */
+        .toast{position:fixed;top:20px;right:20px;z-index:999;background:#dc2626;color:#fff;padding:14px 24px;border-radius:12px;font-size:14px;font-weight:500;transform:translateX(120%);transition:all .3s}
+        .toast.success{background:var(--green-wa)}
+        .toast.show{transform:translateX(0)}
+
+        /* REVEAL */
+        .reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .slide-up{animation:slideUp .6s ease both}
+
+        /* ANIMATIONS */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes pulseWa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.6)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+
+        /* ===== SHOPPING CART SYSTEM ===== */
+        .cart-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(30, 25, 25, 0.8) 100%);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .cart-tabs {
+            display: flex;
+            gap: 12px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cart-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: #ccc;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-tab:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .cart-tab.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .product-card-catalog {
+            background: rgba(30, 25, 25, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card-catalog:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .product-catalog-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .product-catalog-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .product-catalog-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .product-catalog-specs {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .product-catalog-prices {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .price-item {
+            flex: 1;
+        }
+
+        .price-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .price-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #e5c158;
+            transform: scale(1.02);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* CART BUTTON - Floating */
+        .cart-button {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--gold);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 600;
+            font-size: 18px;
+            z-index: 998;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cart-button:hover {
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            transform: scale(1.05);
+        }
+
+        .cart-button.pulse {
+            animation: cartPulse 0.6s ease;
+        }
+
+        @keyframes cartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4444;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* CART DRAWER */
+        .cart-drawer {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.98) 0%, rgba(30, 25, 25, 0.98) 100%);
+            border-left: 1px solid var(--gold);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-drawer-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-drawer-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .cart-drawer-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-drawer-close:hover {
+            color: var(--gold);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        .cart-item {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background: rgba(212, 175, 55, 0.4);
+        }
+
+        .qty-value {
+            width: 32px;
+            text-align: center;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .remove-btn:hover {
+            color: #ff6666;
+            transform: scale(1.1);
+        }
+
+        .cart-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            color: #888;
+            text-align: center;
+            padding: 24px;
+            font-size: 14px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 16px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .cart-total-label {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .cart-total-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .cart-footer-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cart-send-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-send-btn:hover {
+            background: #e5c158;
+        }
+
+        .cart-clear-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: #999;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-clear-btn:hover {
+            color: #ff6666;
+            border-color: #ff6666;
+        }
+
+        /* CART BACKDROP */
+        .cart-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 997;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-backdrop.open {
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @media(max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .cart-button {
+                bottom: 80px;
+                right: 12px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .cart-tabs {
+                gap: 8px;
+            }
+            
+            .cart-tab {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-drawer {
+                width: 100%;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            .about-grid{grid-template-columns:1fr;gap:40px}
+            .product-cards{grid-template-columns:1fr}
+            .form-wrapper{padding:36px 24px}
+            .form-row{grid-template-columns:1fr}
+            .doc-cards{grid-template-columns:1fr}
+            .cta-section{padding:36px 24px}
+            .cta-buttons{flex-direction:column;align-items:stretch}
+            .cta-btn{justify-content:center}
+            .country-cards{grid-template-columns:1fr}
+        }
+        @media(max-width:480px){
+            .hero{padding:130px 0 60px}
+            .nav-badge{display:none}
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="toast" id="toast"></div>
+
+    <!-- FLOATING WA -->
+    <a href="https://wa.me/5511941002149" target="_blank" class="float-wa" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+
+    <!-- CART DRAWER -->
+    <div class="cart-backdrop" id="cartBackdrop"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <div class="cart-drawer-title" id="drawerTitle">Seu Carrinho</div>
+            <button class="cart-drawer-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Seu carrinho está vazio</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <div class="cart-total-label">Total:</div>
+                <div class="cart-total-value" id="cartTotal">R$ 0</div>
+            </div>
+            <div class="cart-footer-btns">
+                <button class="cart-send-btn" onclick="sendCartViaWhatsApp()">Enviar Orçamento</button>
+                <button class="cart-clear-btn" onclick="clearCart()">Limpar Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART BUTTON -->
+    <button class="cart-button" onclick="toggleCart()" title="Carrinho">
+        🛒
+        <div class="cart-badge"></div>
+    </button>
+
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" onclick="location.reload();return false">ZEUS</a>
+            <span class="nav-badge" id="navBadge">ALTA PERFORMANCE</span>
+        </div>
+    </nav>
+
+    <!-- ==================== STEP 0: COUNTRY SELECTOR ==================== -->
+    <div id="step-country">
+        <div class="country-box">
+            <div class="logo-big">ZEUS</div>
+            <div class="sub">Soluções Profissionais de Áudio e Vídeo</div>
+            <h2 class="country-question">Selecione sua região</h2>
+            <p class="country-hint">Select your region to continue</p>
+            <div class="country-cards">
+                <div class="country-card" onclick="selectCountry('br')">
+                    <span class="country-flag">&#127463;&#127479;</span>
+                    <h3>Brasil</h3>
+                    <p>Atendimento em Português<br>Preços em Reais (R$)</p>
+                    <span class="lang-tag">Português • BRL</span>
+                </div>
+                <div class="country-card" onclick="selectCountry('en')">
+                    <span class="country-flag">&#127758;</span>
+                    <h3>International</h3>
+                    <p>Service in English<br>Prices in US Dollars ($)</p>
+                    <span class="lang-tag">English • USD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== STEP 1: LANDING + FORM ==================== -->
+    <div id="step-landing">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-tag" id="heroTag">Catálogo Exclusivo 2026</div>
+                <h1 id="heroTitle">Transforme sua residência em uma <span>experiência cinematográfica</span></h1>
+                <p id="heroText">Painéis LED retráteis, home cinema e sistemas de áudio de alta performance. Acesse nosso catálogo completo e descubra soluções sob medida.</p>
+                <div class="hero-badges" id="heroBadges">
+                    <span class="hero-badge-item">10+ Anos de Mercado</span>
+                    <span class="hero-badge-item">Pioneiros em Retráteis</span>
+                    <span class="hero-badge-item">Tecnologia COB/GOB</span>
+                    <span class="hero-badge-item">Projetos Sob Medida</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about reveal">
+            <div class="container">
+                <div class="about-grid">
+                    <div>
+                        <div class="about-label" id="aboutLabel">Sobre a Zeus</div>
+                        <h2 id="aboutTitle">Pioneiros em painéis LED retráteis no Brasil</h2>
+                        <p class="about-text" id="aboutText">A Zeus Tecnologia é referência nacional e internacional em soluções de áudio e vídeo de alta performance. Oferecemos painéis LED com elevador em alumínio exclusivo, projetados para residências de luxo, salas de cinema privativas, áreas gourmet e espaços corporativos premium. Da concepção à instalação — tudo feito pela equipe Zeus.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label" id="stat1">Anos de Mercado</div></div>
+                        <div class="stat-card"><div class="stat-number">N°1</div><div class="stat-label" id="stat2">Retrátil Alumínio</div></div>
+                        <div class="stat-card"><div class="stat-number">P0.6</div><div class="stat-label" id="stat3">Pixel Pitch Mínimo</div></div>
+                        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label" id="stat4">Anos Garantia</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="products-preview reveal">
+            <div class="container">
+                <div class="section-label" id="prodLabel">Nossas Soluções</div>
+                <h2 id="prodTitle">O que você vai encontrar no catálogo</h2>
+                <div class="product-cards">
+                    <div class="product-card">
+                        <div class="product-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                        <h3 id="prod1Title">Painéis LED Externos</h3>
+                        <p id="prod1Text">Zeus TV, Zeus Retrátil e Painel Fixo. De 92" a 440" com elevador em alumínio exclusivo.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/></svg></div>
+                        <h3 id="prod2Title">Displays LED Indoor</h3>
+                        <p id="prod2Text">Tecnologia COB/GOB de P0.6 a P1.8. Ultra resolução para cinema, gourmet e home theater.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+                        <h3 id="prod3Title">Alta Performance em Áudio</h3>
+                        <p id="prod3Text">Sonorização fina, robusta e encorpada. Engenharia acústica premium para ambientes que exigem excelência absoluta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Cart section removed — cart buttons are inline in doc-cards -->
+
+        <!-- FORM -->
+        <section class="form-section reveal" id="form-section">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="form-label-top" id="formTopLabel">Acesso Exclusivo</div>
+                    <h2 id="formTitle">Receba nosso catálogo completo</h2>
+                    <p class="form-subtitle" id="formSubtitle">Preencha seus dados para acessar as tabelas de preços 2026</p>
+                    <form id="leadForm" onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="nome" id="lblNome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone" id="lblTel">WhatsApp / Telefone</label>
+                            <div class="phone-wrapper">
+                                <span class="phone-prefix" id="phonePrefix">+55</span>
+                                <div class="country-code-box" id="countryCodeBox">
+                                    <span class="country-flag" id="countryFlag"></span>
+                                    <input type="text" class="country-code-input" id="countryCode" placeholder="+1" maxlength="5" autocomplete="off">
+                                </div>
+                                <input type="tel" id="telefone" name="telefone" required autocomplete="tel">
+                            </div>
+                            <div class="phone-country-hint" id="countryHint">
+                                <span class="ch-flag" id="chFlag"></span>
+                                <span class="ch-name" id="chName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+                        </div>
+                        <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true">
+                            <input type="text" name="website_url" id="honeypot" tabindex="-1" autocomplete="off">
+                        </div>
+                        <!-- BR: CEP field -->
+                        <div class="form-group" id="grpCep">
+                            <label for="cep" id="lblCep">CEP</label>
+                            <input type="text" id="cep" name="cep" placeholder="00000-000" required maxlength="9" autocomplete="postal-code">
+                            <div class="cep-status" id="cepStatus"></div>
+                        </div>
+                        <!-- EN: Country -->
+                        <div class="form-group" id="grpPais" style="display:none">
+                            <label for="pais" id="lblPais">Country</label>
+                            <select id="pais" name="pais" required>
+                                <option value="" disabled selected>Select country...</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="IT">Italy</option>
+                                <option value="ES">Spain</option>
+                                <option value="PT">Portugal</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="BE">Belgium</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="AT">Austria</option>
+                                <option value="SE">Sweden</option>
+                                <option value="NO">Norway</option>
+                                <option value="DK">Denmark</option>
+                                <option value="FI">Finland</option>
+                                <option value="IE">Ireland</option>
+                                <option value="PL">Poland</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="GR">Greece</option>
+                                <option value="TR">Turkey</option>
+                                <option value="RU">Russia</option>
+                                <option value="UA">Ukraine</option>
+                                <option value="MX">Mexico</option>
+                                <option value="AR">Argentina</option>
+                                <option value="CL">Chile</option>
+                                <option value="CO">Colombia</option>
+                                <option value="PE">Peru</option>
+                                <option value="AU">Australia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="JP">Japan</option>
+                                <option value="KR">South Korea</option>
+                                <option value="CN">China</option>
+                                <option value="IN">India</option>
+                                <option value="SG">Singapore</option>
+                                <option value="TH">Thailand</option>
+                                <option value="PH">Philippines</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="VN">Vietnam</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="EG">Egypt</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="IL">Israel</option>
+                                <option value="PK">Pakistan</option>
+                            </select>
+                        </div>
+                        <!-- EN: ZIP / Postal Code (auto-fills city + state) -->
+                        <div class="form-group" id="grpZipTop" style="display:none">
+                            <label for="zipCodeTop" id="lblZipTop">ZIP / Postal Code</label>
+                            <input type="text" id="zipCodeTop" name="zipCodeTop" placeholder="33101" maxlength="12" autocomplete="postal-code">
+                            <div class="cep-status" id="zipStatus"></div>
+                        </div>
+                        <!-- Street + Number -->
+                        <div class="form-row" id="rowEndereco">
+                            <div class="form-group" style="flex:2">
+                                <label for="rua" id="lblRua">Rua / Avenida</label>
+                                <input type="text" id="rua" name="rua" placeholder="Av. Paulista" required autocomplete="street-address">
+                            </div>
+                            <div class="form-group" style="flex:0.6">
+                                <label for="numero" id="lblNumero">Nº</label>
+                                <input type="text" id="numero" name="numero" placeholder="1000" required maxlength="10" autocomplete="off">
+                            </div>
+                        </div>
+                        <!-- City + State -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cidade" id="lblCity">Cidade</label>
+                                <input type="text" id="cidade" name="cidade" required>
+                            </div>
+                            <div class="form-group" id="grpEstadoBr">
+                                <label for="estadoBr" id="lblStateBr">Estado</label>
+                                <input type="text" id="estadoBr" name="estadoBr" placeholder="SP" required maxlength="2" style="text-transform:uppercase">
+                            </div>
+                            <div class="form-group" id="grpEstadoEn" style="display:none">
+                                <label for="estado" id="lblStateEn">State / Province</label>
+                                <input type="text" id="estado" name="estado" placeholder="Florida" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="interesse" id="lblInteresse">Interesse principal</label>
+                            <select id="interesse" name="interesse" required>
+                                <option value="" disabled selected id="optDefault">Selecione...</option>
+                                <option value="Zeus Retrátil" id="opt1">Zeus Retrátil (com elevador)</option>
+                                <option value="Zeus TV" id="opt2">Zeus TV (fixo/rodas)</option>
+                                <option value="Painel Fixo" id="opt3">Painel LED Fixo (grande formato)</option>
+                                <option value="Display Indoor" id="opt4">Display LED Indoor (COB/GOB)</option>
+                                <option value="Zeus Sound" id="opt5">Sistema de Áudio</option>
+                                <option value="Projeto Completo" id="opt6">Projeto Completo (LED + Áudio)</option>
+                                <option value="Outro" id="opt7">Outro / Quero conhecer tudo</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit" id="btnSubmit">ACESSAR CATÁLOGO COMPLETO</button>
+                        <p class="form-note" id="formNote">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            Seus dados estão seguros e não serão compartilhados.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== STEP 1.5: THANK YOU ==================== -->
+    <div id="step-thankyou" style="display:none;min-height:100vh;padding:100px 0 60px;position:relative;z-index:1">
+        <div class="container" style="text-align:center;max-width:700px">
+            <div class="slide-up">
+                <div style="width:80px;height:80px;border-radius:50%;background:rgba(212,175,55,0.15);border:2px solid #D4AF37;display:inline-flex;align-items:center;justify-content:center;margin-bottom:30px">
+                    <svg width="40" height="40" fill="none" stroke="#D4AF37" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <h1 style="font-family:'Playfair Display',serif;font-size:2.5rem;margin-bottom:16px" id="thankTitle">Obrigado, <span style="color:#D4AF37" id="thankName"></span>!</h1>
+                <p style="color:#999;font-size:1.1rem;line-height:1.7;margin-bottom:12px" id="thankText1">Seu cadastro foi realizado com sucesso.</p>
+                <p style="color:#666;font-size:0.95rem;margin-bottom:40px" id="thankText2">Nossa equipe entrará em contato em até 24 horas para entender melhor o seu projeto.</p>
+                <button onclick="goToDocs()" style="background:#D4AF37;color:#0A0A0A;border:none;padding:16px 40px;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;letter-spacing:1px;transition:all 0.3s" onmouseover="this.style.background='#E8C84A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#D4AF37';this.style.transform='translateY(0)'" id="thankBtn">ACESSAR MEU CATÁLOGO →</button>
+                <p style="color:#555;font-size:0.8rem;margin-top:20px" id="thankAutoText">Você será redirecionado automaticamente em <span id="thankCountdown" style="color:#D4AF37;font-weight:700">5</span> segundos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== STEP 2: DOCUMENTS ==================== -->
+    <div id="step-docs">
+        <div class="container">
+            <div class="docs-header slide-up">
+                <div class="welcome-tag" id="docsWelcomeTag">Bem-vindo ao universo Zeus</div>
+                <h1 id="docsTitle">Seu catálogo está <span>pronto</span></h1>
+                <p id="docsSubtitle">Acesse abaixo nossas tabelas de preços completas. Escolha a solução ideal para o seu projeto.</p>
+            </div>
+            <div class="doc-cards">
+                <!-- EXTERNAL -->
+                <div class="doc-card external slide-up" style="animation-delay:.1s">
+                    <div class="doc-icon"><svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                    <span class="doc-tag" id="docExtTag">Cinema & Outdoor</span>
+                    <h3 id="docExtTitle">Projetos Externos Zeus</h3>
+                    <ul class="doc-items" id="docExtItems">
+                        <li>Cinema ao Ar Livre — de 92" a 440"</li>
+                        <li>Zeus Retrátil — elevador em alumínio exclusivo</li>
+                        <li>Zeus TV — fixo ou com rodas, versatilidade total</li>
+                        <li>Áudio de Alta Performance incluso</li>
+                    </ul>
+                    <a id="docExtLink" href="outdoor.html" target="_blank" class="doc-btn">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        <span id="docExtBtnText">EXPLORAR PROJETOS</span>
+                    </a>
+                </div>
+                <!-- INDOOR -->
+                <div class="doc-card internal slide-up" style="animation-delay:.2s">
+                    <div class="doc-icon"><svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/></svg></div>
+                    <span class="doc-tag" id="docIntTag">Home Cinema & Indoor</span>
+                    <h3 id="docIntTitle">Projetos Internos Zeus</h3>
+                    <ul class="doc-items" id="docIntItems">
+                        <li>Cinema 4K Ultra — telas de P0.6 a P0.9 COB</li>
+                        <li>Home Cinema Premium — P1.2 para ambientes de luxo</li>
+                        <li>Cinema Acessível — P1.5/P1.8 custo-benefício</li>
+                        <li>Áudio de Alta Performance incluso</li>
+                    </ul>
+                    <a id="docIntLink" href="indoor.html" target="_blank" class="doc-btn">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        <span id="docIntBtnText">EXPLORAR PROJETOS</span>
+                    </a>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="cta-section slide-up" style="animation-delay:.35s">
+                <h3 id="ctaTitle">Gostou? Fale com a nossa equipe</h3>
+                <p id="ctaText">Solicite um orçamento personalizado ou tire suas dúvidas diretamente conosco.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5511941002149?text=Ol%C3%A1%2C%20acabei%20de%20ver%20o%20cat%C3%A1logo%20Zeus%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!" target="_blank" class="cta-btn whatsapp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                        WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/zeustecnologiaonlife" target="_blank" class="cta-btn instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                    <a href="https://www.zeusoficial.com" target="_blank" class="cta-btn site">
+                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                        Site Oficial
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><p>&copy; 2026 Zeus Tecnologia On Life — <a href="https://www.zeusoficial.com" target="_blank">www.zeusoficial.com</a> — Alphaville, São Paulo</p></div>
+    </div>
+
+    <script>
+        // ===== CONFIG =====
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpz31X_0U1pejDCxAjVp9iGbllqaZ9dxj3uHrd_R0GsCqw42cYuilvHtX_1D5Qtlmd/exec';
+        let LANG = 'br'; // default
+
+        // ===== TRANSLATIONS =====
+        const T = {
+            br: {
+                navBadge: 'ALTA PERFORMANCE',
+                heroTag: 'Catálogo Exclusivo 2026',
+                heroTitle: 'Transforme sua residência em uma <span>experiência cinematográfica</span>',
+                heroText: 'Painéis LED retráteis, home cinema e sistemas de áudio de alta performance. Acesse nosso catálogo completo e descubra soluções sob medida.',
+                badges: ['10+ Anos de Mercado', 'Pioneiros em Retráteis', 'Tecnologia COB/GOB', 'Projetos Sob Medida'],
+                aboutLabel: 'Sobre a Zeus',
+                aboutTitle: 'Pioneiros em painéis LED retráteis no Brasil',
+                aboutText: 'A Zeus Tecnologia é referência nacional e internacional em soluções de áudio e vídeo de alta performance. Oferecemos painéis LED com elevador em alumínio exclusivo, projetados para residências de luxo, salas de cinema privativas, áreas gourmet e espaços corporativos premium. Da concepção à instalação — tudo feito pela equipe Zeus.',
+                stats: ['Anos de Mercado', 'Retrátil Alumínio', 'Pixel Pitch Mínimo', 'Anos Garantia'],
+                prodLabel: 'Nossas Soluções',
+                prodTitle: 'O que você vai encontrar no catálogo',
+                prod1Title: 'Painéis LED Externos', prod1Text: 'Zeus TV, Zeus Retrátil e Painel Fixo. De 92" a 440" com elevador em alumínio exclusivo.',
+                prod2Title: 'Displays LED Indoor', prod2Text: 'Tecnologia COB/GOB de P0.6 a P1.8. Ultra resolução para cinema, gourmet e home theater.',
+                prod3Title: 'Alta Performance em Áudio', prod3Text: 'Sonorização fina, robusta e encorpada. Engenharia acústica premium para ambientes que exigem excelência absoluta.',
+                formTopLabel: 'Acesso Exclusivo',
+                formTitle: 'Receba nosso catálogo completo',
+                formSubtitle: 'Preencha seus dados para acessar as tabelas de preços 2026',
+                lblNome: 'Nome completo', phNome: 'Seu nome completo',
+                lblTel: 'WhatsApp / Telefone', phTel: '(11) 99999-9999', phonePrefix: '+55',
+                lblCep: 'CEP', phCep: '00000-000',
+                lblRua: 'Rua / Avenida', phRua: 'Av. Paulista',
+                lblNumero: 'Nº', phNumero: '1000',
+                lblCity: 'Cidade', phCity: 'São Paulo',
+                lblStateBr: 'Estado', phStateBr: 'SP',
+                lblInteresse: 'Interesse principal',
+                optDefault: 'Selecione...',
+                opt1: 'Zeus Retrátil (com elevador)', opt2: 'Zeus TV (fixo/rodas)', opt3: 'Painel LED Fixo (grande formato)',
+                opt4: 'Display LED Indoor (COB/GOB)', opt5: 'Sistema de Áudio', opt6: 'Projeto Completo (LED + Áudio)', opt7: 'Outro / Quero conhecer tudo',
+                btnSubmit: 'ACESSAR CATÁLOGO COMPLETO',
+                formNote: 'Seus dados estão seguros e não serão compartilhados.',
+                docsWelcomeTag: 'Bem-vindo ao universo Zeus',
+                docsSubtitle: 'Acesse abaixo nossas tabelas de preços completas. Escolha a solução ideal para o seu projeto.',
+                docExtTag: 'Cinema & Outdoor', docExtTitle: 'Projetos Externos Zeus',
+                docExtItems: ['Cinema ao Ar Livre — de 92" a 440"', 'Zeus Retrátil — elevador em alumínio exclusivo', 'Zeus TV — fixo ou com rodas, versatilidade total', 'Áudio de Alta Performance incluso'],
+                docExtBtn: 'EXPLORAR PROJETOS', docExtLink: 'outdoor.html',
+                docIntTag: 'Home Cinema & Indoor', docIntTitle: 'Projetos Internos Zeus',
+                docIntItems: ['Cinema 4K Ultra — telas de P0.6 a P0.9 COB', 'Home Cinema Premium — P1.2 para ambientes de luxo', 'Cinema Acessível — P1.5/P1.8 custo-benefício', 'Áudio de Alta Performance incluso'],
+                docIntBtn: 'EXPLORAR PROJETOS', docIntLink: 'indoor.html',
+                ctaTitle: 'Gostou? Fale com a nossa equipe',
+                ctaText: 'Solicite um orçamento personalizado ou tire suas dúvidas diretamente conosco.',
+                toastFill: 'Por favor, preencha todos os campos.'
+            },
+            en: {
+                navBadge: 'HIGH PERFORMANCE',
+                heroTag: 'Exclusive Catalog 2026',
+                heroTitle: 'Transform your residence into a <span>cinematic experience</span>',
+                heroText: 'Retractable LED panels, home cinema and high-performance audio systems. Access our complete catalog and discover custom-tailored solutions.',
+                badges: ['10+ Years in Market', 'Retractable Pioneer', 'COB/GOB Technology', 'Custom Projects'],
+                aboutLabel: 'About Zeus',
+                aboutTitle: 'Pioneers in retractable LED panels with aluminum lift',
+                aboutText: 'Zeus Tecnologia is a national and international reference in high-performance audio and video solutions. We offer LED panels with exclusive aluminum lifts, designed for luxury residences, private cinemas, gourmet areas and premium corporate spaces. From design to installation — everything by the Zeus team.',
+                stats: ['Years in Market', 'Aluminum Lift', 'Min Pixel Pitch', 'Year Warranty'],
+                prodLabel: 'Our Solutions',
+                prodTitle: 'What you\'ll find in the catalog',
+                prod1Title: 'Outdoor LED Panels', prod1Text: 'Zeus TV, Zeus Retractable and Fixed Panel. From 92" to 440" with exclusive aluminum lift.',
+                prod2Title: 'Indoor LED Displays', prod2Text: 'COB/GOB technology from P0.6 to P1.8. Ultra resolution for cinema, gourmet and home theater.',
+                prod3Title: 'High Performance Audio', prod3Text: 'Rich, robust and refined sound engineering. Premium acoustics for environments that demand absolute excellence.',
+                formTopLabel: 'Exclusive Access',
+                formTitle: 'Get our complete catalog',
+                formSubtitle: 'Fill in your details to access the 2026 price lists',
+                lblNome: 'Full name', phNome: 'Your full name',
+                lblTel: 'WhatsApp / Phone', phTel: 'Phone number', phonePrefix: '+',
+                lblPais: 'Country', phPais: 'United States',
+                lblState: 'State / Province', phState: 'Florida',
+                lblRua: 'Street / Avenue', phRua: '123 Ocean Drive',
+                lblNumero: 'Nº', phNumero: '100',
+                lblCity: 'City', phCity: 'Miami',
+                lblZip: 'ZIP / Postal Code', phZip: '33101',
+                lblInteresse: 'Main interest',
+                optDefault: 'Select...',
+                opt1: 'Zeus Retractable (with lift)', opt2: 'Zeus TV (fixed/wheels)', opt3: 'Fixed LED Panel (large format)',
+                opt4: 'Indoor LED Display (COB/GOB)', opt5: 'Audio System', opt6: 'Complete Project (LED + Audio)', opt7: 'Other / I want to see everything',
+                btnSubmit: 'ACCESS COMPLETE CATALOG',
+                formNote: 'Your data is secure and will not be shared.',
+                docsWelcomeTag: 'Welcome to the Zeus universe',
+                docsSubtitle: 'Access our complete price lists below. Choose the ideal solution for your project.',
+                docExtTag: 'Cinema & Outdoor', docExtTitle: 'Zeus Outdoor Projects',
+                docExtItems: ['Outdoor Cinema — from 92" to 440"', 'Zeus Retractable — exclusive aluminum lift system', 'Zeus TV — fixed or on wheels, total versatility', 'High-Performance Audio included'],
+                docExtBtn: 'EXPLORE PROJECTS', docExtLink: 'outdoor-en.html',
+                docIntTag: 'Home Cinema & Indoor', docIntTitle: 'Zeus Indoor Projects',
+                docIntItems: ['Ultra 4K Cinema — P0.6 to P0.9 COB screens', 'Premium Home Cinema — P1.2 for luxury spaces', 'Accessible Cinema — P1.5/P1.8 best value', 'High-Performance Audio included'],
+                docIntBtn: 'EXPLORE PROJECTS', docIntLink: 'indoor-en.html',
+                ctaTitle: 'Interested? Talk to our team',
+                ctaText: 'Request a custom quote or ask us any questions directly.',
+                toastFill: 'Please fill in all fields.'
+            }
+        };
+
+        // ===== COUNTRY SELECTION =====
+        function selectCountry(lang) {
+            LANG = lang;
+            document.documentElement.lang = lang === 'br' ? 'pt-BR' : 'en';
+            applyTranslations();
+            document.getElementById('step-country').style.display = 'none';
+            document.getElementById('step-landing').style.display = 'block';
+            window.scrollTo(0, 0);
+            // Init reveals
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function applyTranslations() {
+            const t = T[LANG];
+            // Nav
+            document.getElementById('navBadge').textContent = t.navBadge;
+            // Hero
+            document.getElementById('heroTag').textContent = t.heroTag;
+            document.getElementById('heroTitle').innerHTML = t.heroTitle;
+            document.getElementById('heroText').textContent = t.heroText;
+            const badgeEls = document.querySelectorAll('#heroBadges .hero-badge-item');
+            t.badges.forEach((b, i) => { if (badgeEls[i]) badgeEls[i].textContent = b; });
+            // About
+            document.getElementById('aboutLabel').textContent = t.aboutLabel;
+            document.getElementById('aboutTitle').textContent = t.aboutTitle;
+            document.getElementById('aboutText').textContent = t.aboutText;
+            document.getElementById('stat1').textContent = t.stats[0];
+            document.getElementById('stat2').textContent = t.stats[1];
+            document.getElementById('stat3').textContent = t.stats[2];
+            document.getElementById('stat4').textContent = t.stats[3];
+            // Products
+            document.getElementById('prodLabel').textContent = t.prodLabel;
+            document.getElementById('prodTitle').textContent = t.prodTitle;
+            document.getElementById('prod1Title').textContent = t.prod1Title;
+            document.getElementById('prod1Text').textContent = t.prod1Text;
+            document.getElementById('prod2Title').textContent = t.prod2Title;
+            document.getElementById('prod2Text').textContent = t.prod2Text;
+            document.getElementById('prod3Title').textContent = t.prod3Title;
+            document.getElementById('prod3Text').textContent = t.prod3Text;
+            // Form
+            document.getElementById('formTopLabel').textContent = t.formTopLabel;
+            document.getElementById('formTitle').textContent = t.formTitle;
+            document.getElementById('formSubtitle').textContent = t.formSubtitle;
+            document.getElementById('lblNome').textContent = t.lblNome;
+            document.getElementById('nome').placeholder = t.phNome;
+            document.getElementById('lblTel').textContent = t.lblTel;
+            document.getElementById('telefone').placeholder = t.phTel;
+            document.getElementById('phonePrefix').textContent = t.phonePrefix;
+            // Location fields — toggle BR vs EN
+            if (LANG === 'br') {
+                document.getElementById('grpCep').style.display = '';
+                document.getElementById('lblCep').textContent = t.lblCep;
+                document.getElementById('cep').placeholder = t.phCep;
+                document.getElementById('cep').required = true;
+                document.getElementById('grpPais').style.display = 'none';
+                document.getElementById('pais').required = false;
+                document.getElementById('grpZipTop').style.display = 'none';
+                document.getElementById('zipCodeTop').required = false;
+                document.getElementById('grpEstadoBr').style.display = '';
+                document.getElementById('lblStateBr').textContent = t.lblStateBr;
+                document.getElementById('estadoBr').placeholder = t.phStateBr;
+                document.getElementById('estadoBr').required = true;
+                document.getElementById('grpEstadoEn').style.display = 'none';
+                document.getElementById('estado').required = false;
+            } else {
+                document.getElementById('grpCep').style.display = 'none';
+                document.getElementById('cep').required = false;
+                document.getElementById('grpPais').style.display = '';
+                document.getElementById('pais').required = true;
+                document.getElementById('grpZipTop').style.display = '';
+                document.getElementById('lblZipTop').textContent = t.lblZip;
+                document.getElementById('zipCodeTop').placeholder = t.phZip;
+                document.getElementById('zipCodeTop').required = true;
+                document.getElementById('grpEstadoBr').style.display = 'none';
+                document.getElementById('estadoBr').required = false;
+                document.getElementById('grpEstadoEn').style.display = '';
+                document.getElementById('lblStateEn').textContent = t.lblState;
+                document.getElementById('estado').placeholder = t.phState;
+                document.getElementById('estado').required = false;
+            }
+            // Address fields
+            document.getElementById('lblRua').textContent = t.lblRua;
+            document.getElementById('rua').placeholder = t.phRua;
+            document.getElementById('lblNumero').textContent = t.lblNumero;
+            document.getElementById('numero').placeholder = t.phNumero;
+            document.getElementById('lblCity').textContent = t.lblCity;
+            document.getElementById('cidade').placeholder = t.phCity;
+            document.getElementById('lblInteresse').textContent = t.lblInteresse;
+            document.getElementById('optDefault').textContent = t.optDefault;
+            document.getElementById('opt1').textContent = t.opt1;
+            document.getElementById('opt2').textContent = t.opt2;
+            document.getElementById('opt3').textContent = t.opt3;
+            document.getElementById('opt4').textContent = t.opt4;
+            document.getElementById('opt5').textContent = t.opt5;
+            document.getElementById('opt6').textContent = t.opt6;
+            document.getElementById('opt7').textContent = t.opt7;
+            document.getElementById('btnSubmit').textContent = t.btnSubmit;
+            // Docs page
+            document.getElementById('docsWelcomeTag').textContent = t.docsWelcomeTag;
+            document.getElementById('docsSubtitle').textContent = t.docsSubtitle;
+            document.getElementById('docExtTag').textContent = t.docExtTag;
+            document.getElementById('docExtTitle').textContent = t.docExtTitle;
+            const extItems = document.getElementById('docExtItems');
+            extItems.innerHTML = t.docExtItems.map(i => `<li>${i}</li>`).join('');
+            document.getElementById('docExtBtnText').textContent = t.docExtBtn;
+            document.getElementById('docExtLink').href = t.docExtLink;
+            document.getElementById('docIntTag').textContent = t.docIntTag;
+            document.getElementById('docIntTitle').textContent = t.docIntTitle;
+            const intItems = document.getElementById('docIntItems');
+            intItems.innerHTML = t.docIntItems.map(i => `<li>${i}</li>`).join('');
+            document.getElementById('docIntBtnText').textContent = t.docIntBtn;
+            document.getElementById('docIntLink').href = t.docIntLink;
+            document.getElementById('ctaTitle').textContent = t.ctaTitle;
+            document.getElementById('ctaText').textContent = t.ctaText;
+            // Phone config
+            const phonePrefix = document.getElementById('phonePrefix');
+            const countryCodeBox = document.getElementById('countryCodeBox');
+            const phoneInput = document.getElementById('telefone');
+            if (LANG === 'br') {
+                phonePrefix.style.display = 'flex';
+                countryCodeBox.style.display = 'none';
+                document.getElementById('countryHint').style.display = 'none';
+                phoneInput.placeholder = '(11) 99999-9999';
+            } else {
+                phonePrefix.style.display = 'none';
+                countryCodeBox.style.display = 'flex';
+                phoneInput.placeholder = 'Phone number';
+                document.getElementById('countryCode').value = '';
+                document.getElementById('countryFlag').textContent = '';
+                document.getElementById('countryHint').style.display = 'none';
+
+                // Add listener for country select to auto-fill phone country code
+                const paisSelect = document.getElementById('pais');
+                if (!paisSelect._phoneAutoFill) {
+                    paisSelect._phoneAutoFill = true;
+                    paisSelect.addEventListener('change', function() {
+                        const isoCode = this.value;
+                        if (isoCode) {
+                            const dialCode = ISO_TO_DIAL[isoCode];
+                            if (dialCode) {
+                                document.getElementById('countryCode').value = dialCode;
+                                const info = getCountry(dialCode);
+                                if (info) {
+                                    document.getElementById('countryFlag').textContent = info[0];
+                                    document.getElementById('chFlag').textContent = info[0];
+                                    document.getElementById('chName').textContent = info[1];
+                                    document.getElementById('countryHint').style.display = 'flex';
+                                }
+                            }
+                            // Clear previous ZIP lookup when country changes
+                            document.getElementById('zipCodeTop').value = '';
+                            document.getElementById('cidade').value = '';
+                            document.getElementById('estado').value = '';
+                            document.getElementById('zipStatus').textContent = '';
+                            document.getElementById('zipStatus').className = 'cep-status';
+                        }
+                    });
+                }
+            }
+        }
+
+        // ===== SCROLL REVEAL =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        // ===== SHOPPING CART SYSTEM =====
+        const PRODUCTS_DATA = {
+            'led-indoor': [
+                { id: 'cinema4k-110', name: 'Zeus Cinema 4K P0.9 COB', specs: '110" (2.4x1.4m)', brl: 89900, usd: 16900 },
+                { id: 'cinema4k-150', name: 'Zeus Cinema 4K P0.9 COB', specs: '150" (3.3x1.9m)', brl: 149900, usd: 28900 },
+                { id: 'homecinema-110', name: 'Zeus Home Cinema P1.2', specs: '110" (2.4x1.4m)', brl: 54900, usd: 10500 },
+                { id: 'homecinema-150', name: 'Zeus Home Cinema P1.2', specs: '150" (3.3x1.9m)', brl: 89900, usd: 17200 },
+                { id: 'display-110', name: 'Zeus Display P1.5', specs: '110" (2.4x1.4m)', brl: 34900, usd: 6800 },
+                { id: 'display-150', name: 'Zeus Display P1.5', specs: '150" (3.3x1.9m)', brl: 54900, usd: 10500 }
+            ],
+            'led-outdoor': [
+                { id: 'retratil-150', name: 'Zeus Retrátil P2.6', specs: '150" (3.3x1.9m)', brl: 74900, usd: 14500 },
+                { id: 'retratil-200', name: 'Zeus Retrátil P2.6', specs: '200" (4.4x2.5m)', brl: 109900, usd: 21200 },
+                { id: 'tv-110', name: 'Zeus TV P2.6 Fixo', specs: '110" (2.4x1.4m)', brl: 44900, usd: 8700 },
+                { id: 'tv-rodas', name: 'Zeus TV P2.6 Rodas', specs: '150" (3.3x1.9m)', brl: 69900, usd: 13500 }
+            ],
+            'audio': [
+                { id: 'soundbar-21', name: 'Zeus Sound Bar 2.1', specs: '', brl: 4900, usd: 950 },
+                { id: 'sound-51', name: 'Zeus Sound System 5.1', specs: '', brl: 12900, usd: 2500 },
+                { id: 'sound-71', name: 'Zeus Sound System 7.1', specs: '', brl: 19900, usd: 3900 },
+                { id: 'subwoofer', name: 'Zeus Subwoofer 18" Pro', specs: '', brl: 6900, usd: 1350 }
+            ],
+            'accessories': [
+                { id: 'processador', name: 'Processador de Vídeo Novastar', specs: '', brl: 5900, usd: 1150 },
+                { id: 'ptz', name: 'Câmera PTZ 4K', specs: '', brl: 3900, usd: 750 },
+                { id: 'cabos', name: 'Kit Cabos Premium 10m', specs: '', brl: 1200, usd: 230 }
+            ]
+        };
+
+        let cart = [];
+        let currentCategory = 'led-indoor';
+
+        // Load cart from localStorage
+        function loadCart() {
+            const saved = localStorage.getItem('zeusCart');
+            if (saved) {
+                cart = JSON.parse(saved);
+                updateCartUI();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('zeusCart', JSON.stringify(cart));
+        }
+
+        // Get product by ID
+        function getProduct(id) {
+            for (const category in PRODUCTS_DATA) {
+                const product = PRODUCTS_DATA[category].find(p => p.id === id);
+                if (product) return { ...product, category };
+            }
+            return null;
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            const product = getProduct(productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    specs: product.specs,
+                    brl: product.brl,
+                    usd: product.usd,
+                    quantity: 1
+                });
+            }
+
+            saveCart();
+            updateCartUI();
+            
+            // Pulse animation on cart button
+            const btn = document.querySelector('.cart-button');
+            btn.classList.add('pulse');
+            setTimeout(() => btn.classList.remove('pulse'), 600);
+        }
+
+        // Update quantity
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+
+            saveCart();
+            updateCartUI();
+        }
+
+        // Remove item
+        function removeFromCart(productId) {
+            cart = cart.filter(i => i.id !== productId);
+            saveCart();
+            updateCartUI();
+        }
+
+        // Clear cart
+        function clearCart() {
+            if (confirm(LANG === 'br' ? 'Deseja limpar o carrinho?' : 'Clear cart?')) {
+                cart = [];
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            const badge = document.querySelector('.cart-badge');
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+
+            const drawer = document.getElementById('cartDrawer');
+            const itemsContainer = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '<div class="cart-empty">' + (LANG === 'br' ? 'Seu carrinho está vazio' : 'Your cart is empty') + '</div>';
+            } else {
+                itemsContainer.innerHTML = cart.map(item => {
+                    const currency = LANG === 'br' ? 'R$' : 'USD';
+                    const price = LANG === 'br' ? (item.brl || item.price || 0) : (item.usd || item.price || 0);
+                    const total = price * item.quantity;
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-specs" style="font-size: 12px; color: #aaa; margin-bottom: 8px;">${item.specs}</div>
+                            <div class="cart-item-price">${currency} ${price.toLocaleString()}</div>
+                            <div class="cart-item-controls">
+                                <div class="quantity-control">
+                                    <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">−</button>
+                                    <div class="qty-value">${item.quantity}</div>
+                                    <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                                </div>
+                                <button class="remove-btn" onclick="removeFromCart('${item.id}')">✕</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Update total
+            const total = cart.reduce((sum, item) => {
+                const price = LANG === 'br' ? (item.brl || item.price || 0) : (item.usd || item.price || 0);
+                return sum + (price * item.quantity);
+            }, 0);
+
+            const totalEl = document.getElementById('cartTotal');
+            const currency = LANG === 'br' ? 'R$' : 'USD';
+            totalEl.textContent = currency + ' ' + total.toLocaleString();
+        }
+
+        // Render products grid
+        function renderProducts(category) {
+            currentCategory = category;
+            const products = PRODUCTS_DATA[category] || [];
+            const grid = document.getElementById('productsGrid');
+            
+            grid.innerHTML = products.map(product => {
+                const currency = LANG === 'br' ? 'R$' : 'USD';
+                const price = LANG === 'br' ? product.brl : product.usd;
+                const icon = getProductIcon(category);
+                
+                return `
+                    <div class="product-card-catalog">
+                        <div class="product-catalog-icon">${icon}</div>
+                        <div class="product-catalog-name">${product.name}</div>
+                        ${product.specs ? `<div class="product-catalog-specs">${product.specs}</div>` : ''}
+                        <div class="product-catalog-prices">
+                            <div class="price-item">
+                                <div class="price-label">${LANG === 'br' ? 'Preço' : 'Price'}</div>
+                                <div class="price-value">${currency} ${price.toLocaleString()}</div>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart('${product.id}')">
+                            ${LANG === 'br' ? 'Adicionar' : 'Add'}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Get product icon
+        function getProductIcon(category) {
+            const icons = {
+                'led-indoor': '<svg fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+                'led-outdoor': '<svg fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><circle cx="6" cy="8" r="1.5"/><circle cx="12" cy="8" r="1.5"/><circle cx="18" cy="8" r="1.5"/></svg>',
+                'audio': '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M6 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>',
+                'accessories': '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 12c0-1.657 1.343-3 3-3h12c1.657 0 3 1.343 3 3s-1.343 3-3 3H6c-1.657 0-3-1.343-3-3z"/><circle cx="8" cy="12" r="1"/></svg>'
+            };
+            return icons[category] || icons['led-indoor'];
+        }
+
+        // Open/close cart drawer
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartBackdrop');
+            drawer.classList.toggle('open');
+            backdrop.classList.toggle('open');
+        }
+
+        // Send via WhatsApp
+        function sendCartViaWhatsApp() {
+            if (cart.length === 0) {
+                showToast(LANG === 'br' ? 'Carrinho vazio' : 'Cart is empty');
+                return;
+            }
+
+            const nome = document.getElementById('nome').value || 'Cliente Zeus';
+            const cidade = document.getElementById('cidade').value || '';
+            
+            let message = '*ORCAMENTO ZEUS TECNOLOGIA*\n';
+            message += '--------------------\n';
+
+            cart.forEach(item => {
+                const price = LANG === 'br' ? (item.brl || item.price || 0) : (item.usd || item.price || 0);
+                const total = price * item.quantity;
+                const curr = LANG === 'br' ? 'R$' : 'USD';
+                message += `> ${item.name} x ${item.quantity}\n  ${curr} ${total.toLocaleString()}\n`;
+            });
+
+            const totalPrice = cart.reduce((sum, item) => {
+                const price = LANG === 'br' ? (item.brl || item.price || 0) : (item.usd || item.price || 0);
+                return sum + (price * item.quantity);
+            }, 0);
+
+            message += '--------------------\n';
+            const currency = LANG === 'br' ? 'R$' : 'USD';
+            message += `*TOTAL: ${currency} ${totalPrice.toLocaleString()}*\n`;
+            message += '--------------------\n';
+            const estadoVal = LANG === 'br' ? (document.getElementById('estadoBr').value || '') : (document.getElementById('estado').value || '');
+            const ruaVal = document.getElementById('rua').value || '';
+            const numeroVal = document.getElementById('numero').value || '';
+            const cepVal = LANG === 'br' ? (document.getElementById('cep').value || '') : '';
+            const telVal = document.getElementById('telefone').value || '';
+            const emailVal = document.getElementById('email').value || '';
+            message += '*DADOS DO CLIENTE*\n';
+            message += `Nome: ${nome}\n`;
+            if (telVal) message += `Tel: ${telVal}\n`;
+            if (emailVal) message += `Email: ${emailVal}\n`;
+            if (ruaVal) message += `Endereco: ${ruaVal}${numeroVal ? ', ' + numeroVal : ''}\n`;
+            if (cidade) message += `Cidade: ${cidade}${estadoVal ? '/' + estadoVal : ''}\n`;
+            if (cepVal) message += `CEP: ${cepVal}\n`;
+
+            // Save orcamento to Google Sheets
+            var orcData = {
+                action: 'orcamento',
+                nome: nome,
+                telefone: telVal,
+                email: emailVal,
+                endereco: (ruaVal ? ruaVal + (numeroVal ? ', ' + numeroVal : '') : '') + (cidade ? ' - ' + cidade : '') + (estadoVal ? '/' + estadoVal : ''),
+                cidade: cidade,
+                estado: estadoVal,
+                cep: cepVal,
+                pais: LANG === 'br' ? 'Brasil' : 'International',
+                interesse: document.getElementById('interesse') ? document.getElementById('interesse').value : 'Carrinho personalizado',
+                itens: JSON.stringify(cart.map(function(item) {
+                    var p = LANG === 'br' ? (item.brl || item.price || 0) : (item.usd || item.price || 0);
+                    return { name: item.name, specs: item.specs || '', price: p, qty: item.quantity };
+                })),
+                total: totalPrice,
+                moeda: LANG === 'br' ? 'BRL' : 'USD',
+                origem: LANG === 'br' ? 'carrinho-index' : 'carrinho-index-en'
+            };
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orcData)
+            }).catch(function(e) { console.log('Orcamento save error:', e); });
+
+            // Open WhatsApp
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/5511941002149?text=${encoded}`, '_blank');
+        }
+
+        // Close cart on backdrop click
+        document.getElementById('cartBackdrop').addEventListener('click', toggleCart);
+
+        // Update drawer title based on language
+        function updateDocItemPrices() {
+            var dt = document.getElementById('drawerTitle');
+            if (dt) dt.textContent = LANG === 'br' ? 'Seu Carrinho' : 'Your Cart';
+        }
+
+        function updateCartTranslations() {
+            updateDocItemPrices();
+        }
+
+        // Initialize cart on page load
+        loadCart();
+
+        // Hook into existing applyTranslations
+        const origApplyTranslations = window.applyTranslations;
+        window.applyTranslations = function() {
+            origApplyTranslations.call(this);
+            updateCartTranslations();
+        };
+
+
+        // ===== TOAST =====
+        function showToast(msg, type = 'error') {
+            const t = document.getElementById('toast');
+            t.textContent = msg; t.className = 'toast ' + type + ' show';
+            setTimeout(() => t.classList.remove('show'), 4000);
+        }
+
+        // ===== PHONE MASK =====
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            if (LANG === 'br') {
+                let v = e.target.value.replace(/\D/g, '');
+                if (v.length > 11) v = v.slice(0, 11);
+                if (v.length > 7) v = v.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+                else if (v.length > 2) v = v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+                e.target.value = v;
+            } else {
+                let v = e.target.value.replace(/[^\d\s]/g, '');
+                if (v.length > 15) v = v.slice(0, 15);
+                e.target.value = v;
+            }
+        });
+
+        // ===== COUNTRY CODE → FLAG + NAME =====
+        const CC = {
+            '1':['🇺🇸','United States'],'7':['🇷🇺','Russia'],'20':['🇪🇬','Egypt'],'27':['🇿🇦','South Africa'],
+            '30':['🇬🇷','Greece'],'31':['🇳🇱','Netherlands'],'32':['🇧🇪','Belgium'],'33':['🇫🇷','France'],
+            '34':['🇪🇸','Spain'],'36':['🇭🇺','Hungary'],'39':['🇮🇹','Italy'],'40':['🇷🇴','Romania'],
+            '41':['🇨🇭','Switzerland'],'43':['🇦🇹','Austria'],'44':['🇬🇧','United Kingdom'],'45':['🇩🇰','Denmark'],
+            '46':['🇸🇪','Sweden'],'47':['🇳🇴','Norway'],'48':['🇵🇱','Poland'],'49':['🇩🇪','Germany'],
+            '51':['🇵🇪','Peru'],'52':['🇲🇽','Mexico'],'53':['🇨🇺','Cuba'],'54':['🇦🇷','Argentina'],
+            '55':['🇧🇷','Brazil'],'56':['🇨🇱','Chile'],'57':['🇨🇴','Colombia'],'58':['🇻🇪','Venezuela'],
+            '60':['🇲🇾','Malaysia'],'61':['🇦🇺','Australia'],'62':['🇮🇩','Indonesia'],'63':['🇵🇭','Philippines'],
+            '64':['🇳🇿','New Zealand'],'65':['🇸🇬','Singapore'],'66':['🇹🇭','Thailand'],
+            '81':['🇯🇵','Japan'],'82':['🇰🇷','South Korea'],'84':['🇻🇳','Vietnam'],'86':['🇨🇳','China'],
+            '90':['🇹🇷','Turkey'],'91':['🇮🇳','India'],'92':['🇵🇰','Pakistan'],'93':['🇦🇫','Afghanistan'],
+            '94':['🇱🇰','Sri Lanka'],'95':['🇲🇲','Myanmar'],'98':['🇮🇷','Iran'],
+            '211':['🇸🇸','South Sudan'],'212':['🇲🇦','Morocco'],'213':['🇩🇿','Algeria'],'216':['🇹🇳','Tunisia'],
+            '218':['🇱🇾','Libya'],'220':['🇬🇲','Gambia'],'221':['🇸🇳','Senegal'],'222':['🇲🇷','Mauritania'],
+            '223':['🇲🇱','Mali'],'224':['🇬🇳','Guinea'],'225':['🇨🇮','Ivory Coast'],'226':['🇧🇫','Burkina Faso'],
+            '227':['🇳🇪','Niger'],'228':['🇹🇬','Togo'],'229':['🇧🇯','Benin'],'230':['🇲🇺','Mauritius'],
+            '231':['🇱🇷','Liberia'],'232':['🇸🇱','Sierra Leone'],'233':['🇬🇭','Ghana'],'234':['🇳🇬','Nigeria'],
+            '235':['🇹🇩','Chad'],'236':['🇨🇫','Central African Republic'],'237':['🇨🇲','Cameroon'],
+            '238':['🇨🇻','Cape Verde'],'239':['🇸🇹','São Tomé and Príncipe'],'240':['🇬🇶','Equatorial Guinea'],
+            '241':['🇬🇦','Gabon'],'242':['🇨🇬','Congo'],'243':['🇨🇩','DR Congo'],'244':['🇦🇴','Angola'],
+            '245':['🇬🇼','Guinea-Bissau'],'246':['🇮🇴','British Indian Ocean'],'247':['🇦🇨','Ascension Island'],
+            '248':['🇸🇨','Seychelles'],'249':['🇸🇩','Sudan'],'250':['🇷🇼','Rwanda'],'251':['🇪🇹','Ethiopia'],
+            '252':['🇸🇴','Somalia'],'253':['🇩🇯','Djibouti'],'254':['🇰🇪','Kenya'],'255':['🇹🇿','Tanzania'],
+            '256':['🇺🇬','Uganda'],'257':['🇧🇮','Burundi'],'258':['🇲🇿','Mozambique'],'260':['🇿🇲','Zambia'],
+            '261':['🇲🇬','Madagascar'],'262':['🇷🇪','Réunion'],'263':['🇿🇼','Zimbabwe'],'264':['🇳🇦','Namibia'],
+            '265':['🇲🇼','Malawi'],'266':['🇱🇸','Lesotho'],'267':['🇧🇼','Botswana'],'268':['🇸🇿','Eswatini'],
+            '269':['🇰🇲','Comoros'],'290':['🇸🇭','Saint Helena'],'291':['🇪🇷','Eritrea'],'297':['🇦🇼','Aruba'],
+            '298':['🇫🇴','Faroe Islands'],'299':['🇬🇱','Greenland'],
+            '350':['🇬🇮','Gibraltar'],'351':['🇵🇹','Portugal'],'352':['🇱🇺','Luxembourg'],'353':['🇮🇪','Ireland'],
+            '354':['🇮🇸','Iceland'],'355':['🇦🇱','Albania'],'356':['🇲🇹','Malta'],'357':['🇨🇾','Cyprus'],
+            '358':['🇫🇮','Finland'],'359':['🇧🇬','Bulgaria'],'370':['🇱🇹','Lithuania'],'371':['🇱🇻','Latvia'],
+            '372':['🇪🇪','Estonia'],'373':['🇲🇩','Moldova'],'374':['🇦🇲','Armenia'],'375':['🇧🇾','Belarus'],
+            '376':['🇦🇩','Andorra'],'377':['🇲🇨','Monaco'],'378':['🇸🇲','San Marino'],'380':['🇺🇦','Ukraine'],
+            '381':['🇷🇸','Serbia'],'382':['🇲🇪','Montenegro'],'383':['🇽🇰','Kosovo'],'385':['🇭🇷','Croatia'],
+            '386':['🇸🇮','Slovenia'],'387':['🇧🇦','Bosnia and Herzegovina'],'389':['🇲🇰','North Macedonia'],
+            '420':['🇨🇿','Czech Republic'],'421':['🇸🇰','Slovakia'],'423':['🇱🇮','Liechtenstein'],
+            '500':['🇫🇰','Falkland Islands'],'501':['🇧🇿','Belize'],'502':['🇬🇹','Guatemala'],
+            '503':['🇸🇻','El Salvador'],'504':['🇭🇳','Honduras'],'505':['🇳🇮','Nicaragua'],
+            '506':['🇨🇷','Costa Rica'],'507':['🇵🇦','Panama'],'508':['🇵🇲','Saint Pierre and Miquelon'],
+            '509':['🇭🇹','Haiti'],'590':['🇬🇵','Guadeloupe'],'591':['🇧🇴','Bolivia'],'592':['🇬🇾','Guyana'],
+            '593':['🇪🇨','Ecuador'],'594':['🇬🇫','French Guiana'],'595':['🇵🇾','Paraguay'],
+            '596':['🇲🇶','Martinique'],'597':['🇸🇷','Suriname'],'598':['🇺🇾','Uruguay'],'599':['🇨🇼','Curaçao'],
+            '670':['🇹🇱','Timor-Leste'],'672':['🇳🇫','Norfolk Island'],'673':['🇧🇳','Brunei'],
+            '674':['🇳🇷','Nauru'],'675':['🇵🇬','Papua New Guinea'],'676':['🇹🇴','Tonga'],
+            '677':['🇸🇧','Solomon Islands'],'678':['🇻🇺','Vanuatu'],'679':['🇫🇯','Fiji'],
+            '680':['🇵🇼','Palau'],'681':['🇼🇫','Wallis and Futuna'],'682':['🇨🇰','Cook Islands'],
+            '683':['🇳🇺','Niue'],'685':['🇼🇸','Samoa'],'686':['🇰🇮','Kiribati'],
+            '687':['🇳🇨','New Caledonia'],'688':['🇹🇻','Tuvalu'],'689':['🇵🇫','French Polynesia'],
+            '690':['🇹🇰','Tokelau'],'691':['🇫🇲','Micronesia'],'692':['🇲🇭','Marshall Islands'],
+            '850':['🇰🇵','North Korea'],'852':['🇭🇰','Hong Kong'],'853':['🇲🇴','Macau'],
+            '855':['🇰🇭','Cambodia'],'856':['🇱🇦','Laos'],'880':['🇧🇩','Bangladesh'],
+            '886':['🇹🇼','Taiwan'],'960':['🇲🇻','Maldives'],'961':['🇱🇧','Lebanon'],
+            '962':['🇯🇴','Jordan'],'963':['🇸🇾','Syria'],'964':['🇮🇶','Iraq'],'965':['🇰🇼','Kuwait'],
+            '966':['🇸🇦','Saudi Arabia'],'967':['🇾🇪','Yemen'],'968':['🇴🇲','Oman'],
+            '970':['🇵🇸','Palestine'],'971':['🇦🇪','United Arab Emirates'],'972':['🇮🇱','Israel'],
+            '973':['🇧🇭','Bahrain'],'974':['🇶🇦','Qatar'],'975':['🇧🇹','Bhutan'],
+            '976':['🇲🇳','Mongolia'],'977':['🇳🇵','Nepal'],
+            '992':['🇹🇯','Tajikistan'],'993':['🇹🇲','Turkmenistan'],'994':['🇦🇿','Azerbaijan'],
+            '995':['🇬🇪','Georgia'],'996':['🇰🇬','Kyrgyzstan'],'998':['🇺🇿','Uzbekistan'],
+            '1242':['🇧🇸','Bahamas'],'1246':['🇧🇧','Barbados'],'1264':['🇦🇮','Anguilla'],
+            '1268':['🇦🇬','Antigua and Barbuda'],'1284':['🇻🇬','British Virgin Islands'],
+            '1340':['🇻🇮','US Virgin Islands'],'1345':['🇰🇾','Cayman Islands'],'1441':['🇧🇲','Bermuda'],
+            '1473':['🇬🇩','Grenada'],'1649':['🇹🇨','Turks and Caicos'],'1658':['🇯🇲','Jamaica'],
+            '1664':['🇲🇸','Montserrat'],'1670':['🇲🇵','Northern Mariana Islands'],
+            '1671':['🇬🇺','Guam'],'1684':['🇦🇸','American Samoa'],'1721':['🇸🇽','Sint Maarten'],
+            '1758':['🇱🇨','Saint Lucia'],'1767':['🇩🇲','Dominica'],'1784':['🇻🇨','Saint Vincent'],
+            '1787':['🇵🇷','Puerto Rico'],'1809':['🇩🇴','Dominican Republic'],
+            '1829':['🇩🇴','Dominican Republic'],'1849':['🇩🇴','Dominican Republic'],
+            '1868':['🇹🇹','Trinidad and Tobago'],'1869':['🇰🇳','Saint Kitts and Nevis'],
+            '1876':['🇯🇲','Jamaica'],'1939':['🇵🇷','Puerto Rico']
+        };
+
+        // ISO 2-letter code to dial code + country name mapping
+        const ISO_TO_DIAL = {
+            'US':'+1','CA':'+1','GB':'+44','DE':'+49','FR':'+33','IT':'+39','ES':'+34',
+            'PT':'+351','NL':'+31','BE':'+32','CH':'+41','AT':'+43','SE':'+46','NO':'+47',
+            'DK':'+45','FI':'+358','IE':'+353','PL':'+48','CZ':'+420','GR':'+30','TR':'+90',
+            'RU':'+7','UA':'+380','MX':'+52','AR':'+54','CL':'+56','CO':'+57','PE':'+51',
+            'AU':'+61','NZ':'+64','JP':'+81','KR':'+82','CN':'+86','IN':'+91','SG':'+65',
+            'TH':'+66','PH':'+63','ID':'+62','MY':'+60','VN':'+84','ZA':'+27','EG':'+20',
+            'AE':'+971','SA':'+966','IL':'+972','PK':'+92','BR':'+55'
+        };
+        const ISO_TO_NAME = {
+            'US':'United States','CA':'Canada','GB':'United Kingdom','DE':'Germany','FR':'France',
+            'IT':'Italy','ES':'Spain','PT':'Portugal','NL':'Netherlands','BE':'Belgium',
+            'CH':'Switzerland','AT':'Austria','SE':'Sweden','NO':'Norway','DK':'Denmark',
+            'FI':'Finland','IE':'Ireland','PL':'Poland','CZ':'Czech Republic','GR':'Greece',
+            'TR':'Turkey','RU':'Russia','UA':'Ukraine','MX':'Mexico','AR':'Argentina',
+            'CL':'Chile','CO':'Colombia','PE':'Peru','AU':'Australia','NZ':'New Zealand',
+            'JP':'Japan','KR':'South Korea','CN':'China','IN':'India','SG':'Singapore',
+            'TH':'Thailand','PH':'Philippines','ID':'Indonesia','MY':'Malaysia','VN':'Vietnam',
+            'ZA':'South Africa','EG':'Egypt','AE':'United Arab Emirates','SA':'Saudi Arabia',
+            'IL':'Israel','PK':'Pakistan','BR':'Brazil'
+        };
+
+        function getCountry(code) {
+            const d = code.replace(/\D/g, '');
+            if (!d) return null;
+            for (let len = 4; len >= 1; len--) {
+                const sub = d.substring(0, len);
+                if (CC[sub]) return CC[sub];
+            }
+            return null;
+        }
+        document.getElementById('countryCode').addEventListener('input', function(e) {
+            let v = e.target.value;
+            if (v && !v.startsWith('+')) v = '+' + v.replace(/[^0-9]/g, '');
+            else v = '+' + v.slice(1).replace(/[^0-9]/g, '');
+            if (v === '+') v = '';
+            e.target.value = v;
+            const info = getCountry(v);
+            const flagEl = document.getElementById('countryFlag');
+            const hintEl = document.getElementById('countryHint');
+            const chFlag = document.getElementById('chFlag');
+            const chName = document.getElementById('chName');
+            if (info) {
+                flagEl.textContent = info[0];
+                chFlag.textContent = info[0];
+                chName.textContent = info[1];
+                hintEl.style.display = 'flex';
+            } else {
+                flagEl.textContent = '';
+                hintEl.style.display = 'none';
+            }
+        });
+
+        // ===== CEP AUTO-FILL (BRAZIL) =====
+        document.getElementById('cep').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length > 8) v = v.slice(0, 8);
+            if (v.length > 5) v = v.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+            e.target.value = v;
+            const digits = v.replace(/\D/g, '');
+            if (digits.length === 8) fetchCep(digits);
+        });
+
+        async function fetchCep(cep) {
+            const status = document.getElementById('cepStatus');
+            status.textContent = 'Buscando endereço...';
+            status.className = 'cep-status loading';
+            try {
+                const res = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+                const data = await res.json();
+                if (data.erro) {
+                    status.textContent = 'CEP não encontrado. Verifique e tente novamente.';
+                    status.className = 'cep-status error';
+                    return;
+                }
+                document.getElementById('cidade').value = data.localidade || '';
+                document.getElementById('estadoBr').value = data.uf || '';
+                if (data.logradouro) {
+                    document.getElementById('rua').value = data.logradouro;
+                    document.getElementById('numero').focus();
+                }
+                status.textContent = '✓ ' + (data.logradouro ? data.logradouro + ', ' : '') + data.localidade + ', ' + data.uf + (data.bairro ? ' — ' + data.bairro : '');
+                status.className = 'cep-status success';
+            } catch(err) {
+                status.textContent = 'Erro ao buscar CEP. Preencha manualmente.';
+                status.className = 'cep-status error';
+            }
+        }
+
+        // ===== ZIP CODE AUTO-FILL (INTERNATIONAL) =====
+        document.getElementById('zipCodeTop').addEventListener('input', function(e) {
+            const val = e.target.value.trim();
+            const paisISO = document.getElementById('pais').value;
+            if (val.length >= 3 && paisISO) {
+                clearTimeout(this._debounce);
+                this._debounce = setTimeout(() => fetchZip(val, paisISO), 500);
+            }
+        });
+
+        async function fetchZip(zip, countryISO) {
+            const status = document.getElementById('zipStatus');
+            status.textContent = 'Looking up address...';
+            status.className = 'cep-status loading';
+            let found = false;
+
+            // Attempt 1: Zippopotam.us API (covers 60+ countries)
+            try {
+                const res = await fetch('https://api.zippopotam.us/' + countryISO + '/' + encodeURIComponent(zip));
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.places && data.places.length > 0) {
+                        const place = data.places[0];
+                        document.getElementById('cidade').value = place['place name'] || '';
+                        document.getElementById('estado').value = place['state'] || place['state abbreviation'] || '';
+                        status.textContent = '\u2713 ' + place['place name'] + ', ' + (place['state'] || place['state abbreviation'] || '');
+                        status.className = 'cep-status success';
+                        // Focus on street field since city/state are filled
+                        document.getElementById('rua').focus();
+                        found = true;
+                    }
+                }
+            } catch(e) { /* fallback below */ }
+
+            // Attempt 2: Nominatim structured search by postalcode + country
+            if (!found) {
+                try {
+                    const countryName = ISO_TO_NAME[countryISO] || countryISO;
+                    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&postalcode=' + encodeURIComponent(zip) + '&country=' + encodeURIComponent(countryName);
+                    const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+                    const data = await res.json();
+                    if (data && data.length > 0) {
+                        const parts = data[0].display_name.split(',').map(s => s.trim());
+                        // Typically: "ZIP, City, State, Country" or similar
+                        if (parts.length >= 3) {
+                            document.getElementById('cidade').value = parts[1] || parts[0] || '';
+                            document.getElementById('estado').value = parts[2] || '';
+                        } else if (parts.length >= 2) {
+                            document.getElementById('cidade').value = parts[0] || '';
+                            document.getElementById('estado').value = parts[1] || '';
+                        }
+                        status.textContent = '\u2713 ' + data[0].display_name;
+                        status.className = 'cep-status success';
+                        document.getElementById('rua').focus();
+                        found = true;
+                    }
+                } catch(e) { /* final fallback */ }
+            }
+
+            if (!found) {
+                status.textContent = 'ZIP not found. Please fill in city and state manually.';
+                status.className = 'cep-status error';
+            }
+        }
+
+        // ===== GEOCODING (NOMINATIM / OPENSTREETMAP) =====
+        async function geocodeAddress(rua, numero, cidade, estado, cep, pais) {
+            const headers = { 'Accept-Language': 'en' };
+            const base = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1';
+
+            // For Nominatim, street format depends on country:
+            // US/CA/AU/UK: "number street" (e.g., "100 Biscayne Blvd")
+            // BR/EU: "street, number" (e.g., "Av. Paulista, 1000")
+            const westernFormat = ['US','CA','AU','NZ','GB','IE'].includes(pais);
+            const streetStr = rua ? (westernFormat ? (numero ? numero + ' ' : '') + rua : rua + (numero ? ' ' + numero : '')) : '';
+
+            async function tryNominatim(params) {
+                try {
+                    const url = base + '&' + params;
+                    console.log('[Geocode] Trying:', url);
+                    const res = await fetch(url, { headers });
+                    const data = await res.json();
+                    if (data && data.length > 0) {
+                        console.log('[Geocode] Found:', data[0].lat, data[0].lon, data[0].display_name);
+                        return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+                    }
+                } catch(e) { console.warn('[Geocode] Error:', e); }
+                return null;
+            }
+
+            // Resolve country name for Nominatim (works better with country name than ISO code)
+            const countryName = ISO_TO_NAME[pais] || pais;
+
+            // 1st: Full structured — street + city + state + postalcode + country
+            let result = await tryNominatim(
+                (streetStr ? 'street=' + encodeURIComponent(streetStr) + '&' : '') +
+                'city=' + encodeURIComponent(cidade) +
+                (estado ? '&state=' + encodeURIComponent(estado) : '') +
+                (cep ? '&postalcode=' + encodeURIComponent(cep) : '') +
+                '&country=' + encodeURIComponent(countryName)
+            );
+            if (result) return result;
+
+            // 2nd: Free-text query — "number street, city, state, zip, country"
+            const freeText = [streetStr, cidade, estado, cep, countryName].filter(Boolean).join(', ');
+            result = await tryNominatim('q=' + encodeURIComponent(freeText));
+            if (result) return result;
+
+            // 3rd: Structured without street — city + state + postalcode + country
+            result = await tryNominatim(
+                'city=' + encodeURIComponent(cidade) +
+                (estado ? '&state=' + encodeURIComponent(estado) : '') +
+                (cep ? '&postalcode=' + encodeURIComponent(cep) : '') +
+                '&country=' + encodeURIComponent(countryName)
+            );
+            if (result) return result;
+
+            // 4th: Just postalcode + country (reliable fallback for most countries)
+            if (cep) {
+                result = await tryNominatim(
+                    'postalcode=' + encodeURIComponent(cep) +
+                    '&country=' + encodeURIComponent(countryName)
+                );
+                if (result) return result;
+            }
+
+            // 5th: Just city + country (least precise but always works)
+            result = await tryNominatim(
+                'city=' + encodeURIComponent(cidade) +
+                '&country=' + encodeURIComponent(countryName)
+            );
+            if (result) return result;
+
+            console.warn('[Geocode] All attempts failed for:', { rua, numero, cidade, estado, cep, pais });
+            return null;
+        }
+
+        // ===== FORM SUBMIT =====
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const t = T[LANG];
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const cidade = document.getElementById('cidade').value.trim();
+            const interesse = document.getElementById('interesse').value;
+            const honeypot = document.getElementById('honeypot').value.trim();
+
+            const rua = document.getElementById('rua').value.trim();
+            const numero = document.getElementById('numero').value.trim();
+            let estado, pais, paisISO, cep;
+            if (LANG === 'br') {
+                estado = document.getElementById('estadoBr').value.trim();
+                pais = 'Brasil';
+                paisISO = 'BR';
+                cep = document.getElementById('cep').value.trim();
+                if (!nome || !telefone || !email || !rua || !numero || !cidade || !estado || !cep || !interesse) {
+                    showToast(t.toastFill); return false;
+                }
+            } else {
+                paisISO = document.getElementById('pais').value;
+                pais = ISO_TO_NAME[paisISO] || paisISO;
+                estado = document.getElementById('estado').value.trim();
+                cep = document.getElementById('zipCodeTop').value.trim();
+                if (!nome || !telefone || !email || !rua || !numero || !cidade || !paisISO || !cep || !interesse) {
+                    showToast(t.toastFill); return false;
+                }
+            }
+
+            // Rate limiting check — DESATIVADO TEMPORARIAMENTE PARA TESTES
+            // const now = Date.now();
+            // const submitTimes = JSON.parse(localStorage.getItem('zeus_submit_times') || '[]');
+            // const recentSubmits = submitTimes.filter(ts => now - ts < 3600000);
+            // if (recentSubmits.length >= 3) {
+            //     const msg = LANG === 'br' ? 'Muitos acessos em pouco tempo. Tente novamente em alguns minutos.' : 'Too many requests. Please try again in a few minutes.';
+            //     showToast(msg);
+            //     return false;
+            // }
+            // recentSubmits.push(now);
+            // localStorage.setItem('zeus_submit_times', JSON.stringify(recentSubmits));
+
+            // Phone validation
+            let phoneValidated = false;
+            if (LANG === 'br') {
+                const phoneDigits = telefone.replace(/\D/g, '');
+                if (phoneDigits.length !== 11) {
+                    const msg = 'Número de celular inválido. Use DDD + 9 dígitos.';
+                    showToast(msg); return false;
+                }
+                const ddd = parseInt(phoneDigits.substring(0, 2));
+                const invalidDDDs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                if (invalidDDDs.includes(ddd) || ddd < 11 || ddd > 99) {
+                    const msg = 'Número de celular inválido. Use DDD + 9 dígitos.';
+                    showToast(msg); return false;
+                }
+                if (phoneDigits[2] !== '9') {
+                    const msg = 'Número de celular inválido. Use DDD + 9 dígitos.';
+                    showToast(msg); return false;
+                }
+                if (phoneDigits === phoneDigits[0].repeat(11)) {
+                    const msg = 'Número de celular inválido. Use DDD + 9 dígitos.';
+                    showToast(msg); return false;
+                }
+                let isSequential = true;
+                for (let i = 1; i < phoneDigits.length; i++) {
+                    if (parseInt(phoneDigits[i]) !== parseInt(phoneDigits[i-1]) + 1) {
+                        isSequential = false;
+                        break;
+                    }
+                }
+                if (isSequential) {
+                    const msg = 'Número de celular inválido. Use DDD + 9 dígitos.';
+                    showToast(msg); return false;
+                }
+                phoneValidated = true;
+            } else {
+                const phoneDigits = telefone.replace(/\D/g, '');
+                if (phoneDigits.length < 7) {
+                    const msg = 'Invalid phone number.';
+                    showToast(msg); return false;
+                }
+                const countryCode = document.getElementById('countryCode').value.trim();
+                if (!countryCode) {
+                    const msg = 'Please enter a country code (e.g. +1).';
+                    showToast(msg); return false;
+                }
+                phoneValidated = true;
+            }
+
+            if (!phoneValidated) return false;
+
+            btn.classList.add('loading');
+            btn.innerHTML = '<span class="spinner"></span> ' + (LANG === 'br' ? 'ENVIANDO...' : 'SUBMITTING...');
+
+            // Honeypot check: if filled, fake success without sending data
+            if (honeypot) {
+                showThankYou(nome.split(' ')[0]);
+                return false;
+            }
+
+            let fullPhone = telefone;
+            if (LANG === 'br') {
+                fullPhone = '+55 ' + telefone;
+            } else {
+                const countryCode = document.getElementById('countryCode').value.trim();
+                fullPhone = countryCode + ' ' + telefone;
+            }
+
+            // Geocode the full address for exact location
+            const endereco = rua + (numero ? ', ' + numero : '');
+            const geo = await geocodeAddress(rua, numero, cidade, estado, cep, paisISO);
+            const latitude = geo ? geo.lat : '';
+            const longitude = geo ? geo.lng : '';
+
+            const leadData = {
+                nome, telefone: fullPhone, email,
+                endereco, cidade, estado, interesse,
+                cep, pais, latitude, longitude,
+                idioma: LANG === 'br' ? 'Português' : 'English',
+                moeda: LANG === 'br' ? 'BRL' : 'USD',
+                data: new Date().toISOString(),
+                origem: 'Landing Page Instagram',
+                pagina: window.location.href
+            };
+            try {
+                if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                    await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) });
+                }
+                const leads = JSON.parse(localStorage.getItem('zeus_leads') || '[]');
+                leads.push(leadData);
+                localStorage.setItem('zeus_leads', JSON.stringify(leads));
+                showThankYou(nome.split(' ')[0]);
+            } catch (err) {
+                const leads = JSON.parse(localStorage.getItem('zeus_leads') || '[]');
+                leads.push(leadData);
+                localStorage.setItem('zeus_leads', JSON.stringify(leads));
+                showThankYou(nome.split(' ')[0]);
+            }
+            return false;
+        }
+
+        let thankYouTimer = null;
+
+        function showThankYou(firstName) {
+            const t = T[LANG];
+            document.getElementById('step-landing').style.display = 'none';
+            document.getElementById('step-thankyou').style.display = 'block';
+            document.getElementById('thankName').textContent = firstName;
+            window._firstName = firstName;
+
+            if (LANG === 'en') {
+                document.getElementById('thankTitle').innerHTML = 'Thank you, <span style="color:#D4AF37">' + firstName + '</span>!';
+                document.getElementById('thankText1').textContent = 'Your registration was successful.';
+                document.getElementById('thankText2').textContent = 'Our team will contact you within 24 hours to better understand your project.';
+                document.getElementById('thankBtn').textContent = 'ACCESS MY CATALOG →';
+                document.getElementById('thankAutoText').innerHTML = 'You will be redirected automatically in <span id="thankCountdown" style="color:#D4AF37;font-weight:700">5</span> seconds';
+            }
+
+            window.scrollTo(0, 0);
+
+            // Fire Meta Pixel Lead event
+            if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+            // Fire GA event
+            if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { event_category: 'engagement' });
+
+            // Auto-redirect countdown
+            let count = 5;
+            thankYouTimer = setInterval(() => {
+                count--;
+                const el = document.getElementById('thankCountdown');
+                if (el) el.textContent = count;
+                if (count <= 0) {
+                    clearInterval(thankYouTimer);
+                    goToDocs();
+                }
+            }, 1000);
+        }
+
+        function goToDocs() {
+            if (thankYouTimer) clearInterval(thankYouTimer);
+            document.getElementById('step-thankyou').style.display = 'none';
+            showDocsPage(window._firstName || '');
+        }
+
+        function showDocsPage(firstName) {
+            const t = T[LANG];
+            document.getElementById('step-landing').style.display = 'none';
+            document.getElementById('step-thankyou').style.display = 'none';
+            document.getElementById('step-docs').style.display = 'block';
+            const titleEl = document.getElementById('docsTitle');
+            if (LANG === 'br') {
+                titleEl.innerHTML = firstName + ', seu catálogo está <span>pronto</span>';
+            } else {
+                titleEl.innerHTML = firstName + ', your catalog is <span>ready</span>';
+            }
+
+            // === Pass lead data to catalog links via URL params ===
+            const nome = document.getElementById('nome').value.trim();
+            const cidade = document.getElementById('cidade').value.trim();
+            const estado = LANG === 'br' ? document.getElementById('estadoBr').value.trim() : document.getElementById('estado').value.trim();
+            const interesse = document.getElementById('interesse').value;
+            const interesseText = document.getElementById('interesse').selectedOptions[0]?.textContent || interesse;
+            const rua = document.getElementById('rua').value.trim();
+            const numero = document.getElementById('numero').value.trim();
+            const cep = LANG === 'br' ? document.getElementById('cep').value.trim() : (document.getElementById('zipCodeTop') ? document.getElementById('zipCodeTop').value.trim() : '');
+            const telefone = document.getElementById('telefone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const params = new URLSearchParams({ nome, cidade, estado, interesse: interesseText, lang: LANG, rua, numero, cep, telefone, email });
+
+            // Update indoor link
+            const intLink = document.getElementById('docIntLink');
+            const baseInt = t.docIntLink.split('?')[0];
+            intLink.href = baseInt + '?' + params.toString();
+
+            // Update outdoor link
+            const extLink = document.getElementById('docExtLink');
+            const baseExt = t.docExtLink.split('?')[0];
+            if (!baseExt.startsWith('http')) {
+                extLink.href = baseExt + '?' + params.toString();
+            } else {
+                // External URL — append params as hash so they survive redirect
+                extLink.href = baseExt + '#' + params.toString();
+            }
+
+            // === Personalize WhatsApp CTA on docs page ===
+            const waCtaLink = document.querySelector('.cta-btn.whatsapp');
+            if (waCtaLink && nome) {
+                let waMsg;
+                if (LANG === 'br') {
+                    waMsg = `Olá, meu nome é ${nome}, sou de ${cidade}/${estado}. Tenho interesse em: ${interesseText}. Gostaria de mais informações sobre os projetos Zeus!`;
+                } else {
+                    waMsg = `Hi, my name is ${nome}, I'm from ${cidade}, ${estado}. I'm interested in: ${interesseText}. I'd like more information about Zeus projects!`;
+                }
+                waCtaLink.href = 'https://wa.me/5511941002149?text=' + encodeURIComponent(waMsg);
+
+                // Also update the floating WhatsApp button
+                const floatWa = document.querySelector('.float-wa');
+                if (floatWa) floatWa.href = waCtaLink.href;
+            }
+
+            window.scrollTo(0, 0);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+    </script>
+</body>
+</html>
+        
