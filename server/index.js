@@ -2,6 +2,7 @@
 // ZEUS CRM PRO - Main Server
 // Zeus Tecnologia - @zeustecnologiaonlife
 // ============================================
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -27,10 +28,10 @@ const server = http.createServer(app);
 
 // Socket.IO for real-time updates
 const io = new Server(server, {
-    cors: {
-        origin: config.cors.origin,
-        methods: ['GET', 'POST']
-    }
+  cors: {
+    origin: config.cors.origin,
+    methods: ['GET', 'POST']
+  }
 });
 
 // Make io accessible to routes
@@ -39,25 +40,27 @@ app.set('io', io);
 // ============================================
 // GLOBAL MIDDLEWARE
 // ============================================
+
 app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://cdn.jsdelivr.net"],
-            imgSrc: ["'self'", "data:", "blob:", "https:"],
-            connectSrc: ["'self'", "https://firestore.googleapis.com", "wss:", "ws:"]
-        }
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com", "https://cdn.jsdelivr.net"],
+      imgSrc: ["'self'", "data:", "blob:", "https:"],
+      connectSrc: ["'self'", "https://firestore.googleapis.com", "wss:", "ws:"]
     }
+  }
 }));
 
 app.use(compression());
+
 app.use(cors({
-    origin: config.env === 'production' ? config.cors.origin : '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Admin-Key']
+  origin: config.env === 'production' ? config.cors.origin : '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Admin-Key']
 }));
 
 app.use(express.json({ limit: '10mb' }));
@@ -65,36 +68,54 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Logging
 if (config.env === 'production') {
-    app.use(morgan('combined', {
-        stream: { write: (msg) => logger.info(msg.trim()) }
-    }));
+  app.use(morgan('combined', {
+    stream: { write: (msg) => logger.info(msg.trim()) }
+  }));
 } else {
-    app.use(morgan('dev'));
+  app.use(morgan('dev'));
 }
 
 // ============================================
 // STATIC FILES
 // ============================================
+
+// Smart caching: HTML files always revalidate, assets cache longer
 app.use(express.static(path.join(__dirname, '..', 'public'), {
-    maxAge: config.env === 'production' ? '1d' : 0,
-    etag: true
+  etag: true,
+  lastModified: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      // HTML files: always revalidate with server (uses ETag)
+      res.setHeader('Cache-Control', 'no-cache');
+    } else if (filePath.match(/\.(js|css)$/)) {
+      // JS/CSS: cache 1 hour, revalidate
+      res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+    } else if (filePath.match(/\.(png|jpg|jpeg|gif|ico|svg|webp)$/)) {
+      // Images: cache 7 days
+      res.setHeader('Cache-Control', 'public, max-age=604800');
+    } else {
+      // Everything else: cache 1 day
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
 }));
 
 // ============================================
 // API ROUTES
 // ============================================
+
 const apiRouter = express.Router();
 apiRouter.use(apiLimiter);
 
 // Health check (public)
 apiRouter.get('/health', (req, res) => {
-    res.json({
-        status: 'ok',
-        service: 'Zeus CRM Pro',
-        version: '2.0.0',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime()
-    });
+  res.json({
+    status: 'ok',
+    service: 'Zeus CRM Pro',
+    version: '2.0.1',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
 
 // Auth routes (public)
@@ -119,67 +140,74 @@ app.use('/api/v1', apiRouter);
 // ============================================
 // SOCKET.IO REAL-TIME
 // ============================================
+
 io.on('connection', (socket) => {
-    logger.info(`[Socket] Client connected: ${socket.id}`);
+  logger.info('[Socket] Client connected: ' + socket.id);
 
-    socket.on('join-room', (room) => {
-        socket.join(room);
-        logger.info(`[Socket] ${socket.id} joined room: ${room}`);
-    });
+  socket.on('join-room', (room) => {
+    socket.join(room);
+    logger.info('[Socket] ' + socket.id + ' joined room: ' + room);
+  });
 
-    socket.on('lead-update', (data) => {
-        socket.broadcast.emit('lead-updated', data);
-    });
+  socket.on('lead-update', (data) => {
+    socket.broadcast.emit('lead-updated', data);
+  });
 
-    socket.on('new-notification', (data) => {
-        io.emit('notification', data);
-    });
+  socket.on('new-notification', (data) => {
+    io.emit('notification', data);
+  });
 
-    socket.on('disconnect', () => {
-        logger.info(`[Socket] Client disconnected: ${socket.id}`);
-    });
+  socket.on('disconnect', () => {
+    logger.info('[Socket] Client disconnected: ' + socket.id);
+  });
 });
 
 // ============================================
 // SPA FALLBACK
 // ============================================
+
 app.get('*', (req, res) => {
-    if (req.path.startsWith('/api/')) {
-        return notFoundHandler(req, res);
-    }
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  if (req.path.startsWith('/api/')) {
+    return notFoundHandler(req, res);
+  }
+  // Set no-cache for SPA fallback too
+  res.setHeader('Cache-Control', 'no-cache');
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 // ===========================================
 // ERROR HANDLING
 // ===========================================
+
 app.use(notFoundHandler);
 app.use(errorHandler);
 
 // ===========================================
 // START SERVER
 // ===========================================
+
 const PORT = config.port;
+
 server.listen(PORT, () => {
-    logger.info('========================================');
-    logger.info('  ZEUS CRM PRO v2.0.0');
-    logger.info('  Environment: ' + config.env);
-    logger.info('  Port: ' + PORT);
-    logger.info('  Firebase: ' + config.firebase.projectId);
-    logger.info('========================================');
+  logger.info('========================================');
+  logger.info(' ZEUS CRM PRO v2.0.1');
+  logger.info(' Environment: ' + config.env);
+  logger.info(' Port: ' + PORT);
+  logger.info(' Firebase: ' + config.firebase.projectId);
+  logger.info('========================================');
 });
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-    logger.info('[Server] SIGTERM received. Shutting down...');
-    server.close(() => {
-        logger.info('[Server] Server closed');
-        process.exit(0);
-    });
+  logger.info('[Server] SIGTERM received. Shutting down...');
+  server.close(() => {
+    logger.info('[Server] Server closed');
+    process.exit(0);
+  });
 });
 
 process.on('unhandledRejection', (err) => {
-    logger.error('[Server] Unhandled rejection:', err);
+  logger.error('[Server] Unhandled rejection:', err);
 });
 
 module.exports = { app, server, io };
