@@ -43,8 +43,8 @@ router.post('/', async (req, res) => {
       id,
       title: req.body.title || 'Nova Landing Page',
       slug,
-      template: req.body.template || 'modern',
-      status: req.body.status || 'draft',
+      template: req.body.template || 'modern', // modern, minimal, bold, led-showcase
+      status: req.body.status || 'draft', // draft, published, archived
       sections: req.body.sections || getDefaultSections(),
       formFields: req.body.formFields || ['nome', 'email', 'telefone', 'empresa', 'mensagem'],
       settings: {
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
         metaDescription: req.body.metaDescription || '',
         thankYouMessage: req.body.thankYouMessage || 'Obrigado! Entraremos em contato em breve.',
         redirectUrl: req.body.redirectUrl || '',
-        autoTag: req.body.autoTag || slug,
+        autoTag: req.body.autoTag || slug, // Tag to add to captured leads
         assignVendor: req.body.assignVendor || ''
       },
       analytics: { views: 0, submissions: 0, conversionRate: 0 },
@@ -89,7 +89,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE /api/landing-pages/:id
+// DELETE /api/landing-pages/:id - Delete landing page
 router.delete('/:id', async (req, res) => {
   try {
     const db = admin.firestore();
@@ -100,7 +100,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// POST /api/landing-pages/:id/publish
+// POST /api/landing-pages/:id/publish - Publish/unpublish
 router.post('/:id/publish', async (req, res) => {
   try {
     const db = admin.firestore();
@@ -117,18 +117,28 @@ router.post('/:id/publish', async (req, res) => {
   }
 });
 
-// GET /api/landing-pages/:id/stats
+// GET /api/landing-pages/:id/stats - Page analytics
 router.get('/:id/stats', async (req, res) => {
   try {
     const db = admin.firestore();
     const doc = await db.collection('landing_pages').doc(req.params.id).get();
     if (!doc.exists) return res.status(404).json({ success: false, error: 'Não encontrada' });
+
     const submissions = await db.collection('landing_page_submissions')
       .where('pageId', '==', req.params.id)
-      .orderBy('createdAt', 'desc').limit(100).get();
+      .orderBy('createdAt', 'desc')
+      .limit(100)
+      .get();
+
     const subs = [];
     submissions.forEach(doc => subs.push(doc.data()));
-    res.json({ success: true, analytics: doc.data().analytics, recentSubmissions: subs.slice(0, 20), totalSubmissions: subs.length });
+
+    res.json({
+      success: true,
+      analytics: doc.data().analytics,
+      recentSubmissions: subs.slice(0, 20),
+      totalSubmissions: subs.length
+    });
   } catch (err) {
     res.status(500).json({ success: false, error: 'Erro ao buscar estatísticas' });
   }
@@ -138,98 +148,208 @@ router.get('/:id/stats', async (req, res) => {
 router.post('/submit/:slug', async (req, res) => {
   try {
     const db = admin.firestore();
+
+    // Find page by slug
     const snap = await db.collection('landing_pages')
       .where('slug', '==', req.params.slug)
-      .where('status', '==', 'published').limit(1).get();
-    if (snap.empty) return res.status(404).json({ success: false, error: 'Página não encontrada' });
+      .where('status', '==', 'published')
+      .limit(1)
+      .get();
+
+    if (snap.empty) {
+      return res.status(404).json({ success: false, error: 'Página não encontrada ou não publicada' });
+    }
+
     const page = snap.docs[0].data();
     const formData = req.body;
+
+    // Save submission
     const subId = uuid();
     await db.collection('landing_page_submissions').doc(subId).set({
-      id: subId, pageId: page.id, pageSlug: page.slug,
-      data: formData, ip: req.ip, userAgent: req.get('User-Agent'),
+      id: subId,
+      pageId: page.id,
+      pageSlug: page.slug,
+      data: formData,
+      ip: req.ip,
+      userAgent: req.get('User-Agent'),
       createdAt: new Date().toISOString()
     });
+
+    // Create lead automatically
     const leadId = uuid();
     await db.collection('leads').doc(leadId).set({
-      id: leadId, nome: formData.nome || '', empresa: formData.empresa || '',
-      email: formData.email || '', telefone: formData.telefone || '',
-      mensagem: formData.mensagem || '', valor: 0, estagio: 'novo',
-      origem: 'landing-page:' + page.slug,
+      id: leadId,
+      nome: formData.nome || '',
+      empresa: formData.empresa || '',
+      email: formData.email || '',
+      telefone: formData.telefone || '',
+      mensagem: formData.mensagem || '',
+      valor: 0,
+      estagio: 'novo',
+      origem: `landing-page:${page.slug}`,
       vendedor: page.settings.assignVendor || '',
       tags: ['landing-page', page.settings.autoTag || page.slug].filter(Boolean),
-      notas: 'Lead capturado via landing page: ' + page.title,
-      createdAt: new Date().toISOString(), updatedAt: new Date().toISOString()
+      notas: `Lead capturado via landing page: ${page.title}\n${formData.mensagem || ''}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
     });
+
+    // Update analytics
     await db.collection('landing_pages').doc(page.id).update({
-      'analytics.submissions': admin.firestore.FieldValue.increment(1)
+      'analytics.submissions': admin.firestore.FieldValue.increment(1),
+      'analytics.conversionRate': 0 // Will be recalculated
     });
+
+    // Notify via Socket.IO
     const io = req.app.get('io');
     if (io) io.emit('lead-created', { id: leadId, source: 'landing-page', page: page.title });
+
+    // Trigger workflows
     try {
       const workflowEngine = require('../services/workflow-engine');
       await workflowEngine.processTrigger('lead_created', {
-        leadId, nome: formData.nome, email: formData.email, origem: 'landing-page:' + page.slug
+        leadId, nome: formData.nome, email: formData.email, origem: `landing-page:${page.slug}`
       }, io);
-    } catch (e) {}
-    res.json({ success: true, message: page.settings.thankYouMessage, redirectUrl: page.settings.redirectUrl || null });
+    } catch (e) { /* workflow optional */ }
+
+    res.json({
+      success: true,
+      message: page.settings.thankYouMessage,
+      redirectUrl: page.settings.redirectUrl || null
+    });
   } catch (err) {
+    console.error('[LandingPages] Submit error:', err.message);
     res.status(500).json({ success: false, error: 'Erro ao enviar formulário' });
   }
 });
 
-// GET /api/landing-pages/render/:slug - Render public page
+// GET /api/landing-pages/render/:slug - Render public page (NO AUTH)
 router.get('/render/:slug', async (req, res) => {
   try {
     const db = admin.firestore();
     const snap = await db.collection('landing_pages')
       .where('slug', '==', req.params.slug)
-      .where('status', '==', 'published').limit(1).get();
+      .where('status', '==', 'published')
+      .limit(1)
+      .get();
+
     if (snap.empty) return res.status(404).send('<h1>Página não encontrada</h1>');
     const page = snap.docs[0].data();
+
+    // Track view
     await db.collection('landing_pages').doc(page.id).update({
       'analytics.views': admin.firestore.FieldValue.increment(1)
     });
+
     res.send(renderLandingPage(page, req));
   } catch (err) {
-    res.status(500).send('<h1>Erro</h1>');
+    res.status(500).send('<h1>Erro ao carregar página</h1>');
   }
 });
 
+// Default sections for new pages
 function getDefaultSections() {
   return [
-    { type: 'hero', title: 'Transforme seus espaços com Painéis LED', subtitle: 'Soluções profissionais em LED', ctaText: 'Solicitar Orçamento', backgroundImage: '' },
-    { type: 'features', title: 'Por que escolher a Zeus?', items: [
-      { icon: '⚡', title: 'Alta Resolução', description: 'Painéis de P2.5 a P10' },
-      { icon: '🛠️', title: 'Instalação Completa', description: 'Equipe especializada' },
-      { icon: '💰', title: 'Melhor Custo-Benefício', description: 'Preços competitivos' }
-    ] },
-    { type: 'form', title: 'Solicite seu Orçamento', subtitle: 'Preencha e entraremos em contato em até 24h' }
+    {
+      type: 'hero',
+      title: 'Transforme seus espaços com Painéis LED',
+      subtitle: 'Soluções profissionais em LED para empresas, eventos e publicidade',
+      ctaText: 'Solicitar Orçamento',
+      backgroundImage: ''
+    },
+    {
+      type: 'features',
+      title: 'Por que escolher a Zeus?',
+      items: [
+        { icon: '⚡', title: 'Alta Resolução', description: 'Painéis de P2.5 a P10 para qualquer necessidade' },
+        { icon: '🛠️', title: 'Instalação Completa', description: 'Equipe especializada em instalação e manutenção' },
+        { icon: '💰', title: 'Melhor Custo-Benefício', description: 'Preços competitivos e condições flexíveis' }
+      ]
+    },
+    {
+      type: 'form',
+      title: 'Solicite seu Orçamento',
+      subtitle: 'Preencha o formulário e entraremos em contato em até 24h'
+    }
   ];
 }
 
+// Render landing page HTML
 function renderLandingPage(page, req) {
   const { primaryColor, backgroundColor, fontFamily } = page.settings;
-  const apiBase = req.protocol + '://' + req.get('host') + '/api/landing-pages';
+  const apiBase = `${req.protocol}://${req.get('host')}/api/landing-pages`;
+
   const sectionsHTML = (page.sections || []).map(s => {
     if (s.type === 'hero') {
-      return '<section style="padding:80px 20px;text-align:center;background:linear-gradient(135deg,' + backgroundColor + ',#1a1a1a)"><h1 style="font-size:42px;color:' + primaryColor + '">' + s.title + '</h1><p style="font-size:20px;color:#ccc;max-width:600px;margin:16px auto 32px">' + s.subtitle + '</p><a href="#form" style="display:inline-block;padding:16px 40px;background:' + primaryColor + ';color:#000;text-decoration:none;border-radius:8px;font-weight:700;font-size:18px">' + s.ctaText + '</a></section>';
+      return `<section style="padding:80px 20px;text-align:center;background:linear-gradient(135deg,${backgroundColor},#1a1a1a)">
+        <h1 style="font-size:42px;color:${primaryColor};margin-bottom:16px">${s.title}</h1>
+        <p style="font-size:20px;color:#ccc;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto">${s.subtitle}</p>
+        <a href="#form" style="display:inline-block;padding:16px 40px;background:${primaryColor};color:#000;text-decoration:none;border-radius:8px;font-weight:700;font-size:18px">${s.ctaText}</a>
+      </section>`;
     }
     if (s.type === 'features') {
-      var items = (s.items || []).map(i => '<div style="flex:1;min-width:250px;padding:24px;background:#111;border-radius:12px;border:1px solid #222"><div style="font-size:36px;margin-bottom:12px">' + i.icon + '</div><h3 style="color:' + primaryColor + '">' + i.title + '</h3><p style="color:#aaa;font-size:14px">' + i.description + '</p></div>').join('');
-      return '<section style="padding:60px 20px;text-align:center"><h2 style="color:#fff;font-size:28px;margin-bottom:40px">' + s.title + '</h2><div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto">' + items + '</div></section>';
+      const items = (s.items || []).map(i =>
+        `<div style="flex:1;min-width:250px;padding:24px;background:#111;border-radius:12px;border:1px solid #222">
+          <div style="font-size:36px;margin-bottom:12px">${i.icon}</div>
+          <h3 style="color:${primaryColor};margin-bottom:8px">${i.title}</h3>
+          <p style="color:#aaa;font-size:14px">${i.description}</p>
+        </div>`
+      ).join('');
+      return `<section style="padding:60px 20px;text-align:center">
+        <h2 style="color:#fff;font-size:28px;margin-bottom:40px">${s.title}</h2>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto">${items}</div>
+      </section>`;
     }
     if (s.type === 'form') {
-      var fields = (page.formFields || []).map(f => {
-        var labels = { nome: 'Seu Nome', email: 'E-mail', telefone: 'Telefone', empresa: 'Empresa', mensagem: 'Mensagem' };
-        if (f === 'mensagem') return '<textarea name="' + f + '" placeholder="' + (labels[f] || f) + '" rows="3" style="width:100%;padding:12px;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:14px;resize:vertical" required></textarea>';
-        return '<input name="' + f + '" type="' + (f === 'email' ? 'email' : 'text') + '" placeholder="' + (labels[f] || f) + '" style="width:100%;padding:12px;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:14px" required />';
+      const fields = (page.formFields || []).map(f => {
+        const labels = { nome: 'Seu Nome', email: 'E-mail', telefone: 'Telefone', empresa: 'Empresa', mensagem: 'Mensagem' };
+        if (f === 'mensagem') {
+          return `<textarea name="${f}" placeholder="${labels[f] || f}" rows="3" style="width:100%;padding:12px;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:14px;resize:vertical" required></textarea>`;
+        }
+        return `<input name="${f}" type="${f === 'email' ? 'email' : 'text'}" placeholder="${labels[f] || f}" style="width:100%;padding:12px;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:14px" required />`;
       }).join('');
-      return '<section id="form" style="padding:60px 20px;text-align:center"><h2 style="color:#fff;font-size:28px;margin-bottom:8px">' + s.title + '</h2><p style="color:#888;margin-bottom:32px">' + (s.subtitle || '') + '</p><form id="zeus-lp-form" style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:12px">' + fields + '<button type="submit" style="padding:14px;background:' + primaryColor + ';color:#000;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer">Enviar</button><p id="zeus-lp-msg" style="color:#22c55e;display:none"></p></form><script>document.getElementById('zeus-lp-form').onsubmit=async function(e){e.preventDefault();var fd=new FormData(this),obj={};fd.forEach(function(v,k){obj[k]=v});try{var r=await fetch("' + apiBase + '/submit/' + page.slug + '",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)});var d=await r.json();if(d.success){document.getElementById("zeus-lp-msg").style.display="block";document.getElementById("zeus-lp-msg").textContent=d.message;this.reset();if(d.redirectUrl)setTimeout(function(){window.location=d.redirectUrl},2000)}}catch(err){alert("Erro ao enviar. Tente novamente.")}};</script></section>';
+
+      return `<section id="form" style="padding:60px 20px;text-align:center">
+        <h2 style="color:#fff;font-size:28px;margin-bottom:8px">${s.title}</h2>
+        <p style="color:#888;margin-bottom:32px">${s.subtitle || ''}</p>
+        <form id="zeus-lp-form" style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+          ${fields}
+          <button type="submit" style="padding:14px;background:${primaryColor};color:#000;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer">Enviar</button>
+          <p id="zeus-lp-msg" style="color:#22c55e;display:none"></p>
+        </form>
+        <script>
+        document.getElementById('zeus-lp-form').onsubmit=async function(e){
+          e.preventDefault();
+          var fd=new FormData(this),obj={};
+          fd.forEach(function(v,k){obj[k]=v});
+          try{
+            var r=await fetch('${apiBase}/submit/${page.slug}',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj)});
+            var d=await r.json();
+            if(d.success){
+              document.getElementById('zeus-lp-msg').style.display='block';
+              document.getElementById('zeus-lp-msg').textContent=d.message;
+              this.reset();
+              if(d.redirectUrl)setTimeout(function(){window.location=d.redirectUrl},2000);
+            }
+          }catch(err){alert('Erro ao enviar. Tente novamente.')}
+        };
+        </script>
+      </section>`;
     }
     return '';
   }).join('');
-  return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>' + (page.settings.metaTitle || page.title) + '</title><meta name="description" content="' + (page.settings.metaDescription || '') + '"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:' + fontFamily + ',sans-serif;background:' + backgroundColor + ';color:#e0e0e0}</style></head><body>' + sectionsHTML + '<footer style="text-align:center;padding:32px;color:#555;font-size:12px;border-top:1px solid #1a1a1a">Zeus Tecnologia — Soluções em LED</footer></body></html>';
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${page.settings.metaTitle || page.title}</title>
+<meta name="description" content="${page.settings.metaDescription || ''}">
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:${fontFamily},sans-serif;background:${backgroundColor};color:#e0e0e0}</style>
+</head>
+<body>${sectionsHTML}
+<footer style="text-align:center;padding:32px;color:#555;font-size:12px;border-top:1px solid #1a1a1a">Zeus Tecnologia — Soluções em LED</footer>
+</body></html>`;
 }
 
 module.exports = router;
