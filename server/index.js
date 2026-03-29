@@ -1,5 +1,5 @@
 // ============================================
-// ZEUS CRM PRO - Main Server v3.0.0
+// ZEUS CRM PRO - Main Server v4.0.0
 // Zeus Tecnologia - @zeustecnologiaonlife
 // ============================================
 
@@ -25,6 +25,9 @@ initializeFirebase();
 // Create Express app
 const app = express();
 const server = http.createServer(app);
+
+// Trust proxy (Render reverse proxy)
+app.set('trust proxy', 1);
 
 // Socket.IO for real-time updates
 const io = new Server(server, {
@@ -79,7 +82,6 @@ if (config.env === 'production') {
 // STATIC FILES
 // ============================================
 
-// Smart caching: HTML files always revalidate, assets cache longer
 app.use(express.static(path.join(__dirname, '..', 'public'), {
   etag: true,
   lastModified: true,
@@ -97,6 +99,13 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
 }));
 
 // ============================================
+// API DOCUMENTATION (Swagger)
+// ============================================
+
+const { setupSwagger } = require('./config/swagger');
+setupSwagger(app);
+
+// ============================================
 // API ROUTES
 // ============================================
 
@@ -108,17 +117,27 @@ apiRouter.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     service: 'Zeus CRM Pro',
-    version: '3.0.0',
+    version: '4.0.0',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    features: ['ai', 'campaigns', 'signatures', 'exports']
+    features: [
+      'ai', 'campaigns', 'signatures', 'exports',
+      'workflows', 'chatbot', 'landing-pages', 'ab-testing',
+      'custom-reports', 'scheduled-reports', 'permissions',
+      'integrations', 'import-export', 'deduplication',
+      'notifications', 'swagger-docs'
+    ]
   });
 });
 
 // Auth routes (public)
 apiRouter.use('/auth', require('./routes/auth'));
 
-// Protected routes
+// Public routes (no auth needed)
+apiRouter.use('/chatbot', require('./routes/chatbot'));
+apiRouter.use('/webhooks', require('./routes/webhooks'));
+
+// Protected routes - Core v1-v3
 apiRouter.use('/leads', authMiddleware, require('./routes/leads'));
 apiRouter.use('/orcamentos', authMiddleware, require('./routes/orcamentos'));
 apiRouter.use('/contracts', authMiddleware, require('./routes/contracts'));
@@ -129,14 +148,48 @@ apiRouter.use('/reports', authMiddleware, require('./routes/reports'));
 apiRouter.use('/marketing', authMiddleware, require('./routes/marketing'));
 apiRouter.use('/users', authMiddleware, require('./routes/users'));
 apiRouter.use('/settings', authMiddleware, require('./routes/settings'));
-
-// NEW v3.0 - AI, Exports, Webhooks
 apiRouter.use('/ai', authMiddleware, require('./routes/ai'));
 apiRouter.use('/exports', authMiddleware, require('./routes/exports'));
-apiRouter.use('/webhooks', require('./routes/webhooks'));
+
+// NEW v4.0 - All 12 competitive gaps covered
+apiRouter.use('/import', authMiddleware, require('./routes/import'));
+apiRouter.use('/deduplication', authMiddleware, require('./routes/deduplication'));
+apiRouter.use('/workflows', authMiddleware, require('./routes/workflows'));
+apiRouter.use('/landing-pages', authMiddleware, require('./routes/landing-pages'));
+apiRouter.use('/ab-tests', authMiddleware, require('./routes/ab-testing'));
+apiRouter.use('/custom-reports', authMiddleware, require('./routes/custom-reports'));
+apiRouter.use('/scheduled-reports', authMiddleware, require('./routes/scheduled-reports'));
+apiRouter.use('/permissions', authMiddleware, require('./routes/permissions'));
+apiRouter.use('/integrations', authMiddleware, require('./routes/integrations'));
+apiRouter.use('/notifications', authMiddleware, require('./routes/notifications'));
 
 // Mount API
 app.use('/api', apiRouter);
+
+// ============================================
+// PUBLIC LANDING PAGES (served at /lp/:slug)
+// ============================================
+
+app.get('/lp/:slug', async (req, res) => {
+  try {
+    const admin = require('firebase-admin');
+    const db = admin.firestore();
+    const snap = await db.collection('landing_pages')
+      .where('slug', '==', req.params.slug)
+      .where('status', '==', 'published')
+      .limit(1)
+      .get();
+
+    if (snap.empty) {
+      return res.status(404).sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+    }
+
+    // Redirect to landing page renderer
+    res.redirect(`/api/landing-pages/render/${req.params.slug}`);
+  } catch (err) {
+    res.status(500).send('Erro ao carregar página');
+  }
+});
 
 // ============================================
 // SOCKET.IO REAL-TIME
@@ -158,10 +211,47 @@ io.on('connection', (socket) => {
     io.emit('notification', data);
   });
 
+  // v4.0 - Workflow triggers via socket
+  socket.on('workflow-trigger', async (data) => {
+    try {
+      const workflowEngine = require('./services/workflow-engine');
+      const results = await workflowEngine.processTrigger(data.type, data.payload, io);
+      socket.emit('workflow-trigger-result', results);
+    } catch (err) {
+      socket.emit('workflow-trigger-error', { error: err.message });
+    }
+  });
+
+  // v4.0 - Chatbot via socket
+  socket.on('chatbot-message', async (data) => {
+    try {
+      const chatbot = require('./services/chatbot');
+      const result = await chatbot.processMessage(data.sessionId, data.message);
+      socket.emit('chatbot-response', result);
+    } catch (err) {
+      socket.emit('chatbot-error', { error: err.message });
+    }
+  });
+
   socket.on('disconnect', () => {
     logger.info('[Socket] Client disconnected: ' + socket.id);
   });
 });
+
+// ============================================
+// INITIALIZE BACKGROUND SERVICES
+// ============================================
+
+// Start scheduled reports cron jobs
+setTimeout(async () => {
+  try {
+    const scheduler = require('./services/scheduler');
+    await scheduler.initScheduler();
+    logger.info('[Scheduler] Background report scheduler initialized');
+  } catch (err) {
+    logger.warn('[Scheduler] Could not initialize scheduler: ' + err.message);
+  }
+}, 5000); // Delay to let Firebase initialize first
 
 // ============================================
 // SPA FALLBACK
@@ -190,13 +280,28 @@ const PORT = config.port;
 
 server.listen(PORT, () => {
   logger.info('========================================');
-  logger.info(' ZEUS CRM PRO v3.0.0');
+  logger.info(' ZEUS CRM PRO v4.0.0');
   logger.info(' Environment: ' + config.env);
   logger.info(' Port: ' + PORT);
   logger.info(' Firebase: ' + config.firebase.projectId);
   logger.info(' AI: ' + (config.openai.apiKey ? 'Enabled' : 'Disabled'));
   logger.info(' ClickSign: ' + (config.clicksign && config.clicksign.apiKey ? 'Enabled' : 'Disabled'));
   logger.info(' Twilio SMS: ' + (config.twilio.accountSid ? 'Enabled' : 'Disabled'));
+  logger.info(' Swagger Docs: /api/docs');
+  logger.info(' ');
+  logger.info(' v4.0 Features:');
+  logger.info('   - Workflow Automation Engine');
+  logger.info('   - AI Chatbot (GPT-4o-mini)');
+  logger.info('   - Landing Pages Builder');
+  logger.info('   - Import/Export CSV/Excel');
+  logger.info('   - Lead Deduplication');
+  logger.info('   - A/B Testing');
+  logger.info('   - Custom Reports');
+  logger.info('   - Scheduled Reports');
+  logger.info('   - RBAC Permissions');
+  logger.info('   - Integrations Marketplace');
+  logger.info('   - Push Notifications');
+  logger.info('   - API Documentation');
   logger.info('========================================');
 });
 
