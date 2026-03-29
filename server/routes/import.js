@@ -181,13 +181,12 @@ router.get('/export-leads', async (req, res) => {
     snap.forEach(doc => {
       const d = doc.data();
       sheet.addRow({
-
         nome: d.nome,
         empresa: d.empresa,
         email: d.email,
         telefone: d.telefone,
         valor: d.valor || 0,
-        estagio* d.estagio,
+        estagio: d.estagio,
         origem: d.origem,
         vendedor: d.vendedor,
         tags: Array.isArray(d.tags) ? d.tags.join(', ') : '',
@@ -226,7 +225,7 @@ async function parseExcel(buffer) {
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.load(buffer);
   const sheet = workbook.worksheets[0];
-  if (!sheet) return {[];
+  if (!sheet) return [];
 
   const headers = [];
   const results = [];
