@@ -1,4 +1,132 @@
-     model: 'gpt-4o-mini',
+/**
+ * Zeus CRM Pro v4.0 - AI Chatbot Service
+ * WhatsApp/Web chatbot with OpenAI GPT for customer support
+ */
+const config = require('../config/env');
+const admin = require('firebase-admin');
+
+const SYSTEM_PROMPT = `Você é o assistente virtual da Zeus Tecnologia, especializada em soluções de painéis LED e áudio/vídeo profissional.
+
+Suas capacidades:
+1. Responder dúvidas sobre produtos (painéis LED indoor/outdoor, telas, etc.)
+2. Informar sobre prazos e condições
+3. Qualificar leads (perguntar orçamento, prazo, tipo de projeto)
+4. Agendar reuniões/visitas com vendedores
+5. Compartilhar informações de contato da empresa
+
+Regras:
+- Seja sempre profissional e cordial
+- Responda em português do Brasil
+- Se não souber a resposta, diga que vai transferir para um atendente humano
+- Nunca invente preços ou especificações técnicas
+- Capture dados do lead: nome, empresa, email, telefone, projeto, orçamento estimado
+- Quando tiver dados suficientes, sugira agendar uma reunião
+
+Informações da empresa:
+- Zeus Tecnologia - Soluções em Painéis LED e Áudio/Vídeo
+- Produtos: Painéis LED P2.5, P3, P4, P5, P6, P8, P10 | Telas LED | Videowall
+- Serviços: Venda, Instalação, Manutenção, Locação
+- Horário: Seg-Sex 8h-18h, Sáb 8h-12h`;
+
+/**
+ * Process a chatbot message and return AI response
+ */
+async function processMessage(sessionId, userMessage, metadata = {}) {
+  const db = admin.firestore();
+
+  // Load conversation history
+  const historyRef = db.collection('chatbot_sessions').doc(sessionId);
+  const historyDoc = await historyRef.get();
+  let session = historyDoc.exists ? historyDoc.data() : {
+    id: sessionId,
+    messages: [],
+    leadData: {},
+    status: 'active',
+    createdAt: new Date().toISOString()
+  };
+
+  // Add user message to history
+  session.messages.push({
+    role: 'user',
+    content: userMessage,
+    timestamp: new Date().toISOString()
+  });
+
+  // Build messages for OpenAI
+  const messages = [
+    { role: 'system', content: SYSTEM_PROMPT },
+    ...session.messages.slice(-20).map(m => ({
+      role: m.role,
+      content: m.content
+    }))
+  ];
+
+  // Add context about known products
+  const productsSnap = await db.collection('products').limit(20).get();
+  if (!productsSnap.empty) {
+    const products = [];
+    productsSnap.forEach(doc => {
+      const p = doc.data();
+      products.push(`- ${p.name}: ${p.description || ''} (${p.category || 'LED'})`);
+    });
+    messages[0].content += `\n\nProdutos disponíveis:\n${products.join('\n')}`;
+  }
+
+  // Call OpenAI
+  const response = await callOpenAI(messages);
+
+  // Extract lead data from conversation
+  const extractedData = extractLeadData(session.messages, userMessage);
+  session.leadData = { ...session.leadData, ...extractedData };
+
+  // Add assistant response
+  session.messages.push({
+    role: 'assistant',
+    content: response,
+    timestamp: new Date().toISOString()
+  });
+
+  session.updatedAt = new Date().toISOString();
+  session.messageCount = session.messages.length;
+
+  // Save session
+  await historyRef.set(session);
+
+  // Auto-create lead if enough data collected
+  let leadCreated = null;
+  if (shouldCreateLead(session.leadData) && !session.leadCreated) {
+    leadCreated = await createLeadFromChat(session.leadData, sessionId);
+    session.leadCreated = true;
+    session.leadId = leadCreated.id;
+    await historyRef.update({ leadCreated: true, leadId: leadCreated.id });
+  }
+
+  return {
+    response,
+    sessionId,
+    leadData: session.leadData,
+    leadCreated,
+    messageCount: session.messages.length
+  };
+}
+
+/**
+ * Call OpenAI API
+ */
+async function callOpenAI(messages) {
+  const apiKey = config.openai?.apiKey;
+  if (!apiKey) return 'Desculpe, o assistente está temporariamente indisponível. Por favor, entre em contato conosco pelo telefone.';
+
+  try {
+    const fetch = globalThis.fetch || require('node-fetch');
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
         messages,
         temperature: 0.7,
         max_tokens: 500
@@ -33,7 +161,7 @@ function extractLeadData(messages, lastMessage) {
 
   // Name patterns (after common greetings)
   const namePatterns = [
-    /(?:me chamo|meu nome é|sou o|sou a|eu sou)\s+([A-ZÀ-Ù][a-zà-ú]+(?:\s+[A-ZÀ-Ù][a-zà-ú]+)*)/i,
+    /(?:me chamo|meu nome é|sou o|sou a|eu sou)\s+([A-ZÀ-Ú][a-zà-ú]+(?:\s+[A-ZÀ-Ú][a-zà-ú]+)*)/i,
     /(?:nome:?\s*)([A-ZÀ-Ú][a-zà-ú]+(?:\s+[A-ZÀ-Ú][a-zà-ú]+)*)/i
   ];
   for (const pattern of namePatterns) {
