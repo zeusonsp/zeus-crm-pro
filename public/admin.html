@@ -26189,11 +26189,15 @@ async function doLogin() {
     errEl.style.display = 'none';
 
     try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
         const res = await fetch(SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ action: 'userLogin', email: email, senha: senha })
+            body: JSON.stringify({ action: 'userLogin', email: email, senha: senha }),
+            signal: controller.signal
         });
+        clearTimeout(timeoutId);
         const result = await res.json();
 
         if (result.status === 'ok' && result.user) {
@@ -26416,7 +26420,10 @@ async function loadLeads() {
     showLoading();
     try {
         const url = SCRIPT_URL + '?action=list&key=' + encodeURIComponent(adminKey);
-        const res = await fetch(url);
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 15000);
+        const res = await fetch(url, { signal: ctrl.signal });
+        clearTimeout(tid);
         const data = await res.json();
 
         if (data.status === 'unauthorized') {
@@ -26442,8 +26449,12 @@ async function loadLeads() {
             loadContratosFromSheets();
         }
     } catch (err) {
-        console.error('Erro ao carregar leads:', err);
-        alert('Erro ao conectar com o servidor. Verifique a conexao.');
+        console.warn('Erro ao carregar leads:', err.name === 'AbortError' ? 'Timeout de conexao' : err);
+        if (err.name !== 'AbortError') {
+            alert('Erro ao conectar com o servidor. Verifique a conexao.');
+        }
+        // Render dashboard even without data
+        renderDashboard();
     }
     hideLoading();
 }
@@ -26454,7 +26465,10 @@ async function loadLeads() {
 async function loadOrcamentos() {
     try {
         const url = SCRIPT_URL + '?action=listOrcamentos&key=' + encodeURIComponent(adminKey);
-        const res = await fetch(url);
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 15000);
+        const res = await fetch(url, { signal: ctrl.signal });
+        clearTimeout(tid);
         const data = await res.json();
         if (data.status === 'ok' && data.orcamentos) {
             // A API já retorna os dados no formato correto:
@@ -26480,7 +26494,10 @@ async function loadOrcamentos() {
 async function loadContratosFromSheets() {
     try {
         const url = SCRIPT_URL + '?action=listContratos&key=' + encodeURIComponent(adminKey);
-        const res = await fetch(url);
+        const ctrl = new AbortController();
+        const tid = setTimeout(() => ctrl.abort(), 15000);
+        const res = await fetch(url, { signal: ctrl.signal });
+        clearTimeout(tid);
         const data = await res.json();
         if (data.status === 'ok' && data.contratos && data.contratos.length > 0) {
             const existingIds = new Set(contracts.map(c => String(c.id)));
